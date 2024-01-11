@@ -309,45 +309,9 @@ const Home = () => {
                     </div>
                 </div>
                 <div className='grid grid-cols-3 gap-[2px]'>
-                    <div className='rounded-[20px] bg-white m-[15px] p-[25px]'>
-                        <div className='flex items-top justify-between'>
-                            <div>
-                                <p className=''>Weekly Offer Sent</p>
-                                <span className='flex gap-[6px] items-center pt-[10px]'><h1 className='font-bold text-[22px]'>16</h1><p>students</p></span>
-                                <p className='text-[14px] text-black/[0.7]'>Total</p>
-                            </div>
-                            <div className='p-8px bg-[#e0e0e8] h-[50px] w-[50px] rounded-[6px] flex items-center justify-center'>
-                                <FaImage />
-                            </div>
-                        </div>
-                        <VerticalBarChart />
-                    </div>
-                    <div className='rounded-[20px] bg-white m-[15px] p-[25px]'>
-                        <div className='flex items-top justify-between'>
-                            <div>
-                                <p className=''>Weekly Offer Sent</p>
-                                <span className='flex gap-[6px] items-center pt-[10px]'><h1 className='font-bold text-[22px]'>16</h1><p>students</p></span>
-                                <p className='text-[14px] text-black/[0.7]'>Total</p>
-                            </div>
-                            <div className='p-8px bg-[#e0e0e8] h-[50px] w-[50px] rounded-[6px] flex items-center justify-center'>
-                                <FaImage />
-                            </div>
-                        </div>
-                        <VerticalBarChart />
-                    </div>
-                    <div className='rounded-[20px] bg-white m-[15px] p-[25px]'>
-                        <div className='flex items-top justify-between'>
-                            <div>
-                                <p className=''>Weekly Offer Sent</p>
-                                <span className='flex gap-[6px] items-center pt-[10px]'><h1 className='font-bold text-[22px]'>16</h1><p>students</p></span>
-                                <p className='text-[14px] text-black/[0.7]'>Total</p>
-                            </div>
-                            <div className='p-8px bg-[#e0e0e8] h-[50px] w-[50px] rounded-[6px] flex items-center justify-center'>
-                                <FaImage />
-                            </div>
-                        </div>
-                        <VerticalBarChart />
-                    </div>
+                    <R3cards title="Weekly Application" lightColor="#e0e0e8" color="#7c7e9f" />
+                    <R3cards title="Weekly Offer Sent" lightColor="#dbedf4" color="#6fc5eb" />
+                    <R3cards title="Weekly Acceptance" lightColor="#dbf4de" color="#7bcb75" />
                 </div>
             </div>
         </div>
@@ -397,6 +361,26 @@ const CircularProgressBar = ({ targetValue }) => {
     );
 };
 
+const R3cards = ({ title, lightColor, color }) => {
+    return (
+        <div>
+            <div className='rounded-[20px] bg-white m-[15px] p-[25px]'>
+                <div className='flex items-top justify-between'>
+                    <div>
+                        <p className=''>{title}</p>
+                        <span className='flex gap-[6px] items-center pt-[10px]'><h1 className='font-bold text-[22px]'>16</h1><p>students</p></span>
+                        <p className='text-[14px] text-black/[0.7]'>Total</p>
+                    </div>
+                    <div className={`p-8px bg-[${lightColor}] h-[50px] w-[50px] rounded-[6px] flex items-center justify-center`}>
+                        <FaImage color={color} />
+                    </div>
+                </div>
+                <VerticalBarChart color={color} />
+            </div>
+        </div>
+    )
+}
+
 const HorizontalBarChart = () => {
 
     return (
@@ -407,17 +391,20 @@ const HorizontalBarChart = () => {
 
     );
 };
-const VerticalBarChart = () => {
-    const data = [3, 1, 2, 1, 1, 3, 5];
+const VerticalBarChart = ({ color }) => {
+    const data = [4, 1, 2, 1, 3, 4, 5];
     const date = [23, 24, 25, 26, 27, 28, 29];
-    const barHeightMultiplier = 20;
+    const barHeightMultiplier = 30;
 
     const bars = data.map((value, index) => (
         <div
             key={index}
-            className={`h-[125px] bg-[#8082a1] w-[20px] rounded-tr-[10px] rounded-tl-[10px] flex items-center justify-center text-white`}
-        >{value}</div>
+            className={`h-[${value * barHeightMultiplier}px] bg-[${color}] w-[20px] rounded-tr-[10px] rounded-tl-[10px] flex items-center justify-center text-white`}
+        >
+            <p>{value}</p>
+        </div>
     ));
+
     const dateRow = date.map((value, index) => (
         <div key={index}>
             <p>{value}</p>
@@ -446,7 +433,7 @@ const VerticalBarChart = () => {
     }
 
     return (
-        <div>
+        <div className='h-[200px]'>
             <div className='border-b-[1px] flex items-end justify-center gap-[15px]'>
                 {bars}
             </div>
