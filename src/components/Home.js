@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { FaChevronDown, FaDollarSign, FaEnvelope, FaExclamation, FaGlobe, FaIdBadge, FaMoon, FaRegCalendarMinus, FaStar, FaTrophy, FaUser, FaWallet } from 'react-icons/fa';
+import { FaChevronDown, FaDollarSign, FaEnvelope, FaExclamation, FaGlobe, FaImage, FaMoon, FaStar, FaUser, FaWallet } from 'react-icons/fa';
 import './CircularProgressBar.css';
 import { PieChart } from '@mui/x-charts';
 
@@ -308,7 +308,47 @@ const Home = () => {
                         <p className='text-[14px] font-normal text-black/[0.7] tracking-wide'>Monthly</p>
                     </div>
                 </div>
-                <div><p>.</p></div>
+                <div className='grid grid-cols-3 gap-[2px]'>
+                    <div className='rounded-[20px] bg-white m-[15px] p-[25px]'>
+                        <div className='flex items-top justify-between'>
+                            <div>
+                                <p className=''>Weekly Offer Sent</p>
+                                <span className='flex gap-[6px] items-center pt-[10px]'><h1 className='font-bold text-[22px]'>16</h1><p>students</p></span>
+                                <p className='text-[14px] text-black/[0.7]'>Total</p>
+                            </div>
+                            <div className='p-8px bg-[#e0e0e8] h-[50px] w-[50px] rounded-[6px] flex items-center justify-center'>
+                                <FaImage />
+                            </div>
+                        </div>
+                        <VerticalBarChart />
+                    </div>
+                    <div className='rounded-[20px] bg-white m-[15px] p-[25px]'>
+                        <div className='flex items-top justify-between'>
+                            <div>
+                                <p className=''>Weekly Offer Sent</p>
+                                <span className='flex gap-[6px] items-center pt-[10px]'><h1 className='font-bold text-[22px]'>16</h1><p>students</p></span>
+                                <p className='text-[14px] text-black/[0.7]'>Total</p>
+                            </div>
+                            <div className='p-8px bg-[#e0e0e8] h-[50px] w-[50px] rounded-[6px] flex items-center justify-center'>
+                                <FaImage />
+                            </div>
+                        </div>
+                        <VerticalBarChart />
+                    </div>
+                    <div className='rounded-[20px] bg-white m-[15px] p-[25px]'>
+                        <div className='flex items-top justify-between'>
+                            <div>
+                                <p className=''>Weekly Offer Sent</p>
+                                <span className='flex gap-[6px] items-center pt-[10px]'><h1 className='font-bold text-[22px]'>16</h1><p>students</p></span>
+                                <p className='text-[14px] text-black/[0.7]'>Total</p>
+                            </div>
+                            <div className='p-8px bg-[#e0e0e8] h-[50px] w-[50px] rounded-[6px] flex items-center justify-center'>
+                                <FaImage />
+                            </div>
+                        </div>
+                        <VerticalBarChart />
+                    </div>
+                </div>
             </div>
         </div>
     )
@@ -367,5 +407,56 @@ const HorizontalBarChart = () => {
 
     );
 };
+const VerticalBarChart = () => {
+    const data = [3, 1, 2, 1, 1, 3, 5];
+    const date = [23, 24, 25, 26, 27, 28, 29];
+    const barHeightMultiplier = 20;
+
+    const bars = data.map((value, index) => (
+        <div
+            key={index}
+            className={`h-[${value * barHeightMultiplier}px] bg-[#8082a1] w-[20px] rounded-tr-[10px] rounded-tl-[10px] flex items-center justify-center text-white`}
+        >{value}</div>
+    ));
+    const dateRow = date.map((value, index) => (
+        <div key={index}>
+            <p>{value}</p>
+            <p>{dfi(index)}</p>
+        </div>
+    ));
+
+    // get day from index . . .
+    function dfi(index) {
+        switch (index) {
+            case 0: return "Su";
+                break;
+            case 1: return "Mo";
+                break;
+            case 2: return "Tu";
+                break;
+            case 3: return "We";
+                break;
+            case 4: return "Th";
+                break;
+            case 5: return "Fr";
+                break;
+            case 6: return "Sa";
+                break;
+        }
+    }
+
+    return (
+        <div>
+            <div className='border-b-[1px] flex items-end justify-center gap-[15px]'>
+                {bars}
+            </div>
+            <div className='flex items-end justify-center gap-[15px]'>
+                {dateRow}
+            </div>
+        </div>
+
+    );
+};
+
 
 export default Home
