@@ -415,7 +415,7 @@ const VerticalBarChart = () => {
     const bars = data.map((value, index) => (
         <div
             key={index}
-            className={`h-[${value * barHeightMultiplier}px] bg-[#8082a1] w-[20px] rounded-tr-[10px] rounded-tl-[10px] flex items-center justify-center text-white`}
+            className={`h-[125px] bg-[#8082a1] w-[20px] rounded-tr-[10px] rounded-tl-[10px] flex items-center justify-center text-white`}
         >{value}</div>
     ));
     const dateRow = date.map((value, index) => (
