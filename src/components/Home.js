@@ -309,7 +309,7 @@ const Home = () => {
                     </div>
                 </div>
                 <div className='grid grid-cols-3 gap-[2px]'>
-                    <R3cards title="Weekly Application" lightColor="#e0e0e8" color="#7c7e9f" />
+                    <R3cards title="Weekly Application" lightColor="#dbedf4" color="#7c7e9f" />
                     <R3cards title="Weekly Offer Sent" lightColor="#dbedf4" color="#6fc5eb" />
                     <R3cards title="Weekly Acceptance" lightColor="#dbf4de" color="#7bcb75" />
                 </div>
@@ -362,6 +362,38 @@ const CircularProgressBar = ({ targetValue }) => {
 };
 
 const R3cards = ({ title, lightColor, color }) => {
+
+    const data = [3, 1, 2, 1, 1, 3, 5];
+    const date = [23, 24, 25, 26, 27, 28, 29];
+    const barHeightMultiplier = 30;
+
+    const bars = data.map((value, index) => (
+        <div
+          key={index}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: `${value * barHeightMultiplier}px`,
+            backgroundColor: color,
+            width: '20px',
+            borderTopLeftRadius: '10px',
+            borderTopRightRadius: '10px',
+            textAlign: 'center',
+            color: 'white',
+          }}
+        >
+          <p>{value}</p>
+        </div>
+      ));
+    
+    const dateRow = date.map((value, index) => (
+        <div key={index}>
+            <p>{value}</p>
+            <p>{dfi(index)}</p>
+        </div>
+    ));
+
     return (
         <div>
             <div className='rounded-[20px] bg-white m-[15px] p-[25px]'>
@@ -375,7 +407,14 @@ const R3cards = ({ title, lightColor, color }) => {
                         <FaImage color={color} />
                     </div>
                 </div>
-                <VerticalBarChart color={color} />
+                <div>
+                    <div className='border-b-[1px] flex items-end justify-center gap-[15px] h-[150px]'>
+                        {bars}
+                    </div>
+                    <div className='flex items-end justify-center gap-[15px]'>
+                        {dateRow}
+                    </div>
+                </div>
             </div>
         </div>
     )
@@ -391,59 +430,25 @@ const HorizontalBarChart = () => {
 
     );
 };
-const VerticalBarChart = ({ color }) => {
-    const data = [4, 1, 2, 1, 3, 4, 5];
-    const date = [23, 24, 25, 26, 27, 28, 29];
-    const barHeightMultiplier = 30;
 
-    const bars = data.map((value, index) => (
-        <div
-            key={index}
-            className={`h-[${value * barHeightMultiplier}px] bg-[${color}] w-[20px] rounded-tr-[10px] rounded-tl-[10px] flex items-center justify-center text-white`}
-        >
-            <p>{value}</p>
-        </div>
-    ));
-
-    const dateRow = date.map((value, index) => (
-        <div key={index}>
-            <p>{value}</p>
-            <p>{dfi(index)}</p>
-        </div>
-    ));
-
-    // get day from index . . .
-    function dfi(index) {
-        switch (index) {
-            case 0: return "Su";
-                break;
-            case 1: return "Mo";
-                break;
-            case 2: return "Tu";
-                break;
-            case 3: return "We";
-                break;
-            case 4: return "Th";
-                break;
-            case 5: return "Fr";
-                break;
-            case 6: return "Sa";
-                break;
-        }
+// get day from index . . .
+function dfi(index) {
+    switch (index) {
+        case 0: return "Su";
+            break;
+        case 1: return "Mo";
+            break;
+        case 2: return "Tu";
+            break;
+        case 3: return "We";
+            break;
+        case 4: return "Th";
+            break;
+        case 5: return "Fr";
+            break;
+        case 6: return "Sa";
+            break;
     }
-
-    return (
-        <div className='h-[200px]'>
-            <div className='border-b-[1px] flex items-end justify-center gap-[15px]'>
-                {bars}
-            </div>
-            <div className='flex items-end justify-center gap-[15px]'>
-                {dateRow}
-            </div>
-        </div>
-
-    );
-};
-
+}
 
 export default Home
