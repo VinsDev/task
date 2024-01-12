@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { FaChevronDown, FaDollarSign, FaEnvelope, FaExclamation, FaGlobe, FaImage, FaMoon, FaStar, FaUser, FaWallet } from 'react-icons/fa';
+import { FaBell, FaBellSlash, FaBolt, FaChevronDown, FaDollarSign, FaEnvelope, FaExclamation, FaEyeSlash, FaGlobe, FaImage, FaMicrophone, FaMoon, FaSpeakerDeck, FaStarAndCrescent, FaUser, FaVolumeUp, FaWallet } from 'react-icons/fa';
 import './CircularProgressBar.css';
 import { PieChart } from '@mui/x-charts';
 
@@ -12,7 +12,7 @@ const Home = () => {
                         <p className='text-[#23255c] text-[16px] leading-[25px] font-normal'>Welcome</p>
                         <p className='text-[#24245c] text-[20px] leading-[25px] font-normal'>Necmettin Murat TENIL</p>
                         <div className='flex items-center justify-center gap-[8px] border-t-[2px] w-fit mt-[8px] pt-[2px]'>
-                            <FaStar color='#5cbf54' />
+                            <FaStarAndCrescent color='#5cbf54' />
                             <p className='text-[#5cbf54] font-bold text-[14px]'>Superadmin</p>
                         </div>
                     </div>
@@ -24,148 +24,170 @@ const Home = () => {
                             </div>
                         </div>
                         <div className='flex items-center gap-[20px] px-[20px]'>
-                            <FaMoon color='black' />
-                            <FaGlobe color='black' />
-                            <FaUser color='black' />
+                            <FaMoon color='#3c3e6e' />
+                            <FaGlobe color='#3c3e6e' />
+                            <FaUser color='#3c3e6e' />
                         </div>
                     </div>
+
                 </div>
             </div>
             <div>
-                <div className='grid grid-cols-2 gap-[30px]'>
-                    <div className='rounded-[20px] bg-white m-[15px]'>
-                        <div className='flex justify-between p-[25px] bg-[#dbf4de] rounded-tr-[20px] rounded-tl-[20px]'>
-                            <div>
-                                <FaWallet color='#5cbf54' />
-                                <p className='text-[#5cbf54] font-bold text-[14px] mt-[5px]'>Withdrawn</p>
-                                <p className='text-[#5cbf54] font-bold text-[14px]'>$22,748</p>
-                            </div>
-                            <div>
-                                <FaWallet color='#5cbf54' />
-                                <p className='text-[#5cbf54] font-bold text-[14px]'>Withdrawn</p>
-                                <p className='text-[#5cbf54] font-bold text-[14px]'>$22,748</p>
-                            </div>
-                        </div>
-                        <div className='pl-[25px] pb-[25px] pt-[10px] pr-[25px]'>
-                            <p className='text-[#24245c] text-[18px] leading-[25px] font-bold'>Commision</p>
-                            <div className='flex pt-[25px] justify-between'>
-                                <div className='items-center space-y-4 md:space-y-8 lg:space-y-12'>
-                                    <CircularProgressBar targetValue={43} />
-                                    <p className='text-black/[0.7] text-[14px] leading-[25px] font-normal mt-4'>See all Details</p>
+                <div className='flex'>
+                    <div className='grid grid-cols-2 gap-[30px]'>
+                        <div className='rounded-[20px] bg-white m-[15px]'>
+                            <div className='flex justify-between p-[25px] bg-[#dbf4de] rounded-tr-[20px] rounded-tl-[20px]'>
+                                <div className='my-[20px]'>
+                                    <FaWallet color='#5cbf54' size={22} />
+                                    <p className='text-[#5cbf54] font-bold text-[16px] mt-[5px]'>Withdrawn</p>
+                                    <p className='text-[#5cbf54] font-bold text-[14px]'>$22,748</p>
                                 </div>
                                 <div className='flex'>
-                                    <div className='flex h-fit mx-[15px]'>
-                                        <div className='w-[4px] bg-[#b9cbd3] rounded-[4px] mx-[10px] my-[4px]'></div>
-                                        <div className=''>
-                                            <FaWallet color='grey' />
-                                            <p className='text-black/[0.6] font-bold text-[12px]'>Potential</p>
-                                            <p className='text-black/[0.6] font-bold text-[12px]'>Commisions</p>
-                                            <p className='text-black/[0.7] font-extrabold text-[16px]'>$22,748</p>
+                                    <div className='flex items-center'>
+                                        <div>
+                                            <FaBolt color='#5cbf54' />
+                                            <p className='text-[#5cbf54] font-normal text-[14px]'>10% increse</p>
+                                            <p className='text-grey/[0.7] font-normal text-[14px]'>from last week</p>
                                         </div>
+
                                     </div>
                                     <div>
+                                        <FaEyeSlash color='grey' size={22} />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div className='pl-[25px] pb-[25px] pt-[10px] pr-[25px]'>
+                                <p className='text-[#24245c] text-[18px] leading-[25px] font-bold'>Commision</p>
+                                <div className='flex pt-[25px] justify-between'>
+                                    <div className='items-center space-y-4 md:space-y-8 lg:space-y-12'>
+                                        <CircularProgressBar targetValue={43} />
+                                        <p className='text-black/[0.7] text-[14px] leading-[25px] font-normal mt-4'>See all Details</p>
+                                    </div>
+                                    <div className='flex'>
                                         <div className='flex h-fit mx-[15px]'>
-                                            <div className='w-[4px] bg-[#56bce4] rounded-[4px] mx-[10px] my-[4px]'></div>
+                                            <div className='w-[4px] bg-[#b9cbd3] rounded-[4px] mx-[10px] my-[4px]'></div>
                                             <div className=''>
-                                                <FaDollarSign color='#56bce4' />
+                                                <FaWallet color='grey' />
                                                 <p className='text-black/[0.6] font-bold text-[12px]'>Potential</p>
                                                 <p className='text-black/[0.6] font-bold text-[12px]'>Commisions</p>
-                                                <p className='text-[#56bce4] font-extrabold text-[16px]'>$22,748</p>
+                                                <p className='text-black/[0.7] font-extrabold text-[16px]'>$22,748</p>
                                             </div>
                                         </div>
-                                        <div className='flex h-fit mx-[15px] mt-[35px]'>
-                                            <div className='w-[4px] bg-[#ff5757] rounded-[4px] mx-[10px] my-[4px]'></div>
+                                        <div>
+                                            <div className='flex h-fit mx-[15px]'>
+                                                <div className='w-[4px] bg-[#56bce4] rounded-[4px] mx-[10px] my-[4px]'></div>
+                                                <div className=''>
+                                                    <FaDollarSign color='#56bce4' />
+                                                    <p className='text-black/[0.6] font-bold text-[12px]'>Potential</p>
+                                                    <p className='text-black/[0.6] font-bold text-[12px]'>Commisions</p>
+                                                    <p className='text-[#56bce4] font-extrabold text-[16px]'>$22,748</p>
+                                                </div>
+                                            </div>
+                                            <div className='flex h-fit mx-[15px] mt-[35px]'>
+                                                <div className='w-[4px] bg-[#ff5757] rounded-[4px] mx-[10px] my-[4px]'></div>
+                                                <div className=''>
+                                                    <FaExclamation color='red' />
+                                                    <p className='text-black/[0.6] font-bold text-[12px]'>Refund</p>
+                                                    <p className='text-[#ff5757] font-extrabold text-[16px]'>$22,748</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='rounded-[20px] bg-white my-[15px] mr-[40px] px-[20px] py-[25px]'>
+                            <div className='grid grid-cols-2 gap-[30px]'>
+                                <div className='space-y-4 md:space-y-8 lg:space-y-12'>
+                                    <p className='text-black font-bold text-[20px]'>Student</p>
+                                    <div>
+                                        <div className='flex justify-center items-center mt-[25px]'>
+                                            <h1 className='text-black/[0.5] text-[12px] font-bold'>Daily Average</h1>
+                                        </div>
+                                        <div className='flex justify-center items-center mt-[10px]'>
+                                            <h2 className='text-black text-[22px] font-bold tracking-widest'>49</h2>
+                                        </div>
+                                        <div className='flex justify-center items-center gap-[10px] h-fit mt-[10px]'>
+                                            <p className='text-black text-[10px] font-bold tracking-widest'>Daily</p>
+                                            <div className='w-[1.5px] h-[12px] bg-[#dadada] rounded-[1px]'></div>
+                                            <p className='text-black/[0.5] text-[10px] font-bold tracking-widest'>Weekly</p>
+                                            <div className='w-[1.5px] h-[12px] bg-[#dadada] rounded-[1px]'></div>
+                                            <p className='text-black/[0.5] text-[10px] font-bold tracking-widest'>Monthly</p>
+                                        </div>
+                                    </div>
+
+
+                                    <HorizontalBarChart />
+                                    <div className='flex mt-[15px]'>
+                                        <div className='flex h-fit mx-[15px]'>
+                                            <div className='w-[4px] bg-[#5cbf54] rounded-[4px] mx-[10px] my-[4px]'></div>
                                             <div className=''>
-                                                <FaExclamation color='red' />
-                                                <p className='text-black/[0.6] font-bold text-[12px]'>Refund</p>
-                                                <p className='text-[#ff5757] font-extrabold text-[16px]'>$22,748</p>
+                                                <p className='text-black/[0.6] font-bold text-[10px]'>Students</p>
+                                                <p className='text-black/[0.7] font-extrabold text-[16px]'>1,175</p>
+                                            </div>
+                                        </div>
+                                        <div className='flex h-fit mx-[15px]'>
+                                            <div className='w-[4px] bg-[#b9cbd3] rounded-[4px] mx-[10px] my-[4px]'></div>
+                                            <div className=''>
+                                                <p className='text-black/[0.6] font-bold text-[10px]'>Applications</p>
+                                                <p className='text-black/[0.7] font-extrabold text-[16px]'>1,254</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='rounded-[20px] bg-white my-[15px] mr-[70px] px-[20px] py-[25px]'>
-                        <div className='grid grid-cols-2 gap-[30px]'>
-                            <div className='space-y-4 md:space-y-8 lg:space-y-12'>
-                                <p className='text-black font-bold text-[20px]'>Student</p>
-                                <div>
-                                    <div className='flex justify-center items-center mt-[25px]'>
-                                        <h1 className='text-black/[0.5] text-[12px] font-bold'>Daily Average</h1>
-                                    </div>
-                                    <div className='flex justify-center items-center mt-[10px]'>
-                                        <h2 className='text-black text-[22px] font-bold tracking-widest'>49</h2>
-                                    </div>
-                                    <div className='flex justify-center items-center gap-[10px] h-fit mt-[10px]'>
-                                        <p className='text-black text-[10px] font-bold tracking-widest'>Daily</p>
-                                        <div className='w-[1.5px] h-[12px] bg-[#dadada] rounded-[1px]'></div>
-                                        <p className='text-black/[0.5] text-[10px] font-bold tracking-widest'>Weekly</p>
-                                        <div className='w-[1.5px] h-[12px] bg-[#dadada] rounded-[1px]'></div>
-                                        <p className='text-black/[0.5] text-[10px] font-bold tracking-widest'>Monthly</p>
-                                    </div>
-                                </div>
-
-
-                                <HorizontalBarChart />
-                                <div className='flex mt-[15px]'>
-                                    <div className='flex h-fit mx-[15px]'>
-                                        <div className='w-[4px] bg-[#5cbf54] rounded-[4px] mx-[10px] my-[4px]'></div>
-                                        <div className=''>
-                                            <p className='text-black/[0.6] font-bold text-[10px]'>Students</p>
-                                            <p className='text-black/[0.7] font-extrabold text-[16px]'>1,175</p>
+                                <div className='grid grid-rows-3 gap-[20px]'>
+                                    <div className='bg-white shadow-lg rounded-[8px] mx-[20px]'>
+                                        <div className='bg-[#dbedf4] rounded-tr-[8px] rounded-tl-[8px] flex items-center justify-center gap-[6px] py-[8px]'>
+                                            <FaEnvelope color='#51bae7' />
+                                            <p className='text-[#51bae7] font-bold text-[14px]'>Offer Sent</p>
+                                        </div>
+                                        <div className='flex items-center justify-center'>
+                                            <p className='text-[#51bae7] font-bold text-[18px] leading-[10px] mt-[25px]'>1042</p>
+                                        </div>
+                                        <div className='flex items-center justify-center'>
+                                            <p className='text-black/[0.7] font-bold text-[14px] leading-[40px]'>See all Details</p>
                                         </div>
                                     </div>
-                                    <div className='flex h-fit mx-[15px]'>
-                                        <div className='w-[4px] bg-[#b9cbd3] rounded-[4px] mx-[10px] my-[4px]'></div>
-                                        <div className=''>
-                                            <p className='text-black/[0.6] font-bold text-[10px]'>Applications</p>
-                                            <p className='text-black/[0.7] font-extrabold text-[16px]'>1,254</p>
+                                    <div className='bg-white shadow-lg rounded-[8px] mx-[20px]'>
+                                        <div className='bg-[#feedcd] rounded-tr-[8px] rounded-tl-[8px] flex items-center justify-center gap-[6px] py-[8px]'>
+                                            <FaEnvelope color='#e39735' />
+                                            <p className='text-[#e39735] font-bold text-[14px]'>Offer Sent</p>
+                                        </div>
+                                        <div className='flex items-center justify-center'>
+                                            <p className='text-[#e39735] font-bold text-[18px] leading-[10px] mt-[25px]'>1042</p>
+                                        </div>
+                                        <div className='flex items-center justify-center'>
+                                            <p className='text-black/[0.7] font-bold text-[14px] leading-[40px]'>See all Details</p>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div className='grid grid-rows-3 gap-[20px]'>
-                                <div className='bg-white shadow-lg rounded-[8px] mx-[20px]'>
-                                    <div className='bg-[#dbedf4] rounded-tr-[8px] rounded-tl-[8px] flex items-center justify-center gap-[6px] py-[8px]'>
-                                        <FaEnvelope color='#51bae7' />
-                                        <p className='text-[#51bae7] font-bold text-[14px]'>Offer Sent</p>
-                                    </div>
-                                    <div className='flex items-center justify-center'>
-                                        <p className='text-[#51bae7] font-bold text-[18px] leading-[10px] mt-[25px]'>1042</p>
-                                    </div>
-                                    <div className='flex items-center justify-center'>
-                                        <p className='text-black/[0.7] font-bold text-[14px] leading-[40px]'>See all Details</p>
-                                    </div>
-                                </div>
-                                <div className='bg-white shadow-lg rounded-[8px] mx-[20px]'>
-                                    <div className='bg-[#feedcd] rounded-tr-[8px] rounded-tl-[8px] flex items-center justify-center gap-[6px] py-[8px]'>
-                                        <FaEnvelope color='#e39735' />
-                                        <p className='text-[#e39735] font-bold text-[14px]'>Offer Sent</p>
-                                    </div>
-                                    <div className='flex items-center justify-center'>
-                                        <p className='text-[#e39735] font-bold text-[18px] leading-[10px] mt-[25px]'>1042</p>
-                                    </div>
-                                    <div className='flex items-center justify-center'>
-                                        <p className='text-black/[0.7] font-bold text-[14px] leading-[40px]'>See all Details</p>
-                                    </div>
-                                </div>
-                                <div className='bg-white shadow-lg rounded-[8px] mx-[20px]'>
-                                    <div className='bg-[#dbf4de] rounded-tr-[8px] rounded-tl-[8px] flex items-center justify-center gap-[6px] py-[8px]'>
-                                        <FaEnvelope color='#65c35e' />
-                                        <p className='text-[#65c35e] font-bold text-[14px]'>Offer Sent</p>
-                                    </div>
-                                    <div className='flex items-center justify-center'>
-                                        <p className='text-[#65c35e] font-bold text-[18px] leading-[10px] mt-[25px]'>1042</p>
-                                    </div>
-                                    <div className='flex items-center justify-center'>
-                                        <p className='text-black/[0.7] font-bold text-[14px] leading-[40px]'>See all Details</p>
+                                    <div className='bg-white shadow-lg rounded-[8px] mx-[20px]'>
+                                        <div className='bg-[#dbf4de] rounded-tr-[8px] rounded-tl-[8px] flex items-center justify-center gap-[6px] py-[8px]'>
+                                            <FaEnvelope color='#65c35e' />
+                                            <p className='text-[#65c35e] font-bold text-[14px]'>Offer Sent</p>
+                                        </div>
+                                        <div className='flex items-center justify-center'>
+                                            <p className='text-[#65c35e] font-bold text-[18px] leading-[10px] mt-[25px]'>1042</p>
+                                        </div>
+                                        <div className='flex items-center justify-center'>
+                                            <p className='text-black/[0.7] font-bold text-[14px] leading-[40px]'>See all Details</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div>
+                      <div className='h-[50px] w-[50px] bg-white shadow-lg rounded-[10px] mt-[20px] flex items-center justify-center cursor-pointer'>
+                        <FaBell color='#3c3e6e'/>
+                    </div>  
+                      <div className='h-[50px] w-[50px] bg-[#56bce4] shadow-lg rounded-[10px] mt-[10px] flex items-center justify-center cursor-pointer'>
+                        <FaVolumeUp color='white'/>
+                    </div>  
+                    </div>
+                    
                 </div>
+
                 <div className='flex pl-[15px]'>
                     <div className='flex items-center justify-center px-[20px] py-[6px] border-b-[1px] border-[#EDEDED]/[0.3] bg-[#56bce4] rounded-[6px] cursor-pointer'>
                         <p className='text-[14px] font-normal text-white tracking-wide'>Agencies</p>
@@ -313,6 +335,18 @@ const Home = () => {
                     <R3cards title="Weekly Offer Sent" lightColor="#dbedf4" color="#6fc5eb" />
                     <R3cards title="Weekly Acceptance" lightColor="#dbf4de" color="#7bcb75" />
                 </div>
+                <div className='flex justify-center py-[30px]'>
+                     <div className='flex gap-[10px]'>
+                    <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-[#56bce4]'></div>
+                    <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
+                    <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
+                    <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
+                    <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
+                    <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
+                    <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
+                </div>
+                </div>
+               
             </div>
         </div>
     )
@@ -369,24 +403,24 @@ const R3cards = ({ title, lightColor, color }) => {
 
     const bars = data.map((value, index) => (
         <div
-          key={index}
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: `${value * barHeightMultiplier}px`,
-            backgroundColor: color,
-            width: '20px',
-            borderTopLeftRadius: '10px',
-            borderTopRightRadius: '10px',
-            textAlign: 'center',
-            color: 'white',
-          }}
+            key={index}
+            style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: `${value * barHeightMultiplier}px`,
+                backgroundColor: color,
+                width: '20px',
+                borderTopLeftRadius: '10px',
+                borderTopRightRadius: '10px',
+                textAlign: 'center',
+                color: 'white',
+            }}
         >
-          <p>{value}</p>
+            <p>{value}</p>
         </div>
-      ));
-    
+    ));
+
     const dateRow = date.map((value, index) => (
         <div key={index}>
             <p>{value}</p>
