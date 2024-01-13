@@ -31,11 +31,10 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-
             <div>
                 <div className='flex'>
                     <div className='grid md:grid-cols-2 gap-[30px]'>
-                        <div className='rounded-[20px] bg-white m-[10px]'>
+                        <div className='rounded-[20px] bg-white m-[15px]'>
                             <div className='flex justify-between p-[25px] bg-[#dbf4de] rounded-tr-[20px] rounded-tl-[20px]'>
                                 <div className='my-[20px]'>
                                     <FaWallet color='#5cbf54' size={22} />
@@ -97,7 +96,7 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='rounded-[20px] bg-white m-[10px] px-[20px] py-[25px]'>
+                        <div className='rounded-[20px] bg-white m-[15px] px-[20px] py-[25px]'>
                             <div className='grid grid-cols-2 gap-[30px]'>
                                 <div className='space-y-4 md:space-y-8 lg:space-y-12'>
                                     <p className='text-black font-bold text-[20px]'>Student</p>

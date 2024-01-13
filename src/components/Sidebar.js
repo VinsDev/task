@@ -4,7 +4,7 @@ import { FaAppStore, FaChevronRight, FaCodeBranch, FaGraduationCap, FaHandshake,
 
 const Sidebar = () => {
   return (
-    <div className='bg-white h-screen px-[10px]'>
+    <div className='bg-white h-full px-[10px]'>
       {/* Logo */}
       <div className='pt-[30px] pb-[20px] items-center justify-center border-b-[1px] border-[#EDEDED]/[0.3]'>
         <div className='flex justify-center relative'>
