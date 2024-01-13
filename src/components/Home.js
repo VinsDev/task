@@ -61,7 +61,7 @@ const Home = () => {
                                 <p className='text-[#24245c] text-[18px] leading-[25px] font-bold'>Commision</p>
                                 <div className='flex pt-[25px] justify-between'>
                                     <div className='items-center space-y-4 md:space-y-8 lg:space-y-12'>
-                                        {/* <CircularProgressBar targetValue={43} /> */}
+                                        <CircularProgressBar targetValue={43} />
                                         <p className='text-black/[0.7] text-[14px] leading-[25px] font-normal mt-4'>See all Details</p>
                                     </div>
                                     <div className='flex'>
