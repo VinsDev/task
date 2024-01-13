@@ -5,10 +5,10 @@ import { PieChart } from '@mui/x-charts';
 
 const Home = () => {
     return (
-        <div className='min-h-screen bg-[#f6f6f6]'>
-            <div className='ml-[15px] px-[25px] py-[20px] bg-white rounded-bl-[20px]'>
-                <div className='flex justify-between items-center'>
-                    <div>
+        <div className='min-h-screen bg-[#f6f6f6] md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto'>
+            <div className='md:ml-[15px] md:px-[25px] py-[20px] bg-white rounded-bl-[20px]'>
+                <div className='flex flex-col md:flex-row justify-between items-center'>
+                    <div className='mb-[10px] md:mb-0'>
                         <p className='text-[#23255c] text-[16px] leading-[25px] font-normal'>Welcome</p>
                         <p className='text-[#24245c] text-[20px] leading-[25px] font-normal'>Necmettin Murat TENIL</p>
                         <div className='flex items-center justify-center gap-[8px] border-t-[2px] w-fit mt-[8px] pt-[2px]'>
@@ -29,13 +29,13 @@ const Home = () => {
                             <FaUser color='#3c3e6e' />
                         </div>
                     </div>
-
                 </div>
             </div>
+
             <div>
                 <div className='flex'>
-                    <div className='grid grid-cols-2 gap-[30px]'>
-                        <div className='rounded-[20px] bg-white m-[15px]'>
+                    <div className='grid md:grid-cols-2 gap-[30px]'>
+                        <div className='rounded-[20px] bg-white m-[10px]'>
                             <div className='flex justify-between p-[25px] bg-[#dbf4de] rounded-tr-[20px] rounded-tl-[20px]'>
                                 <div className='my-[20px]'>
                                     <FaWallet color='#5cbf54' size={22} />
@@ -46,7 +46,7 @@ const Home = () => {
                                     <div className='flex items-center'>
                                         <div>
                                             <FaBolt color='#5cbf54' />
-                                            <p className='text-[#5cbf54] font-normal text-[14px]'>10% increse</p>
+                                            <p className='text-[#5cbf54] font-normal text-[14px]'>10% increase</p>
                                             <p className='text-grey/[0.7] font-normal text-[14px]'>from last week</p>
                                         </div>
 
@@ -61,7 +61,7 @@ const Home = () => {
                                 <p className='text-[#24245c] text-[18px] leading-[25px] font-bold'>Commision</p>
                                 <div className='flex pt-[25px] justify-between'>
                                     <div className='items-center space-y-4 md:space-y-8 lg:space-y-12'>
-                                        <CircularProgressBar targetValue={43} />
+                                        {/* <CircularProgressBar targetValue={43} /> */}
                                         <p className='text-black/[0.7] text-[14px] leading-[25px] font-normal mt-4'>See all Details</p>
                                     </div>
                                     <div className='flex'>
@@ -97,7 +97,7 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='rounded-[20px] bg-white my-[15px] mr-[40px] px-[20px] py-[25px]'>
+                        <div className='rounded-[20px] bg-white m-[10px] px-[20px] py-[25px]'>
                             <div className='grid grid-cols-2 gap-[30px]'>
                                 <div className='space-y-4 md:space-y-8 lg:space-y-12'>
                                     <p className='text-black font-bold text-[20px]'>Student</p>
@@ -177,15 +177,14 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                    <div>
-                      <div className='h-[50px] w-[50px] bg-white shadow-lg rounded-[10px] mt-[20px] flex items-center justify-center cursor-pointer'>
-                        <FaBell color='#3c3e6e'/>
-                    </div>  
-                      <div className='h-[50px] w-[50px] bg-[#56bce4] shadow-lg rounded-[10px] mt-[10px] flex items-center justify-center cursor-pointer'>
-                        <FaVolumeUp color='white'/>
-                    </div>  
+                    <div className='hidden md:inline'>
+                        <div className='h-[50px] w-[50px] bg-white shadow-lg rounded-[10px] mt-[20px] ml-[10px] flex items-center justify-center cursor-pointer'>
+                            <FaBell color='#3c3e6e' />
+                        </div>
+                        <div className='h-[50px] w-[50px] bg-[#56bce4] shadow-lg rounded-[10px] mt-[10px] ml-[10px] flex items-center justify-center cursor-pointer'>
+                            <FaVolumeUp color='white' />
+                        </div>
                     </div>
-                    
                 </div>
 
                 <div className='flex pl-[15px]'>
@@ -199,8 +198,8 @@ const Home = () => {
                         <p className='text-[14px] font-normal text-black/[0.7] tracking-wide'>Mentor</p>
                     </div>
                 </div>
-                <div className='flex'>
-                    <div className='w-[22%] rounded-[20px] bg-white m-[15px] px-[20px] py-[20px]'>
+                <div className='flex flex-col md:flex-row'>
+                    <div className='md:w-[22%] rounded-[20px] bg-white m-[15px] px-[20px] py-[20px]'>
                         <p className='text-black font-bold text-[20px]'>Agencies</p>
                         <div className='flex justify-center items-center mt-[25px]'>
                             <h1 className='text-black/[0.5] text-[12px] font-bold'>Total</h1>
@@ -239,7 +238,7 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='w-[44%] rounded-[20px] bg-white m-[15px] px-[20px] py-[20px] shadow-lg'>
+                    <div className='md:w-[44%] rounded-[20px] bg-white m-[15px] px-[20px] py-[20px] shadow-lg'>
                         <p className='text-black font-bold text-[20px]'>Students</p>
                         <div className='grid grid-cols-3 pt-[20px]'>
                             <div className='border-[1px] flex items-center justify-center'>
@@ -282,7 +281,7 @@ const Home = () => {
                         </div>
                         <p className='text-black/[0.7] text-[14px] leading-[25px] font-normal mt-4'>See all Details</p>
                     </div>
-                    <div className='w-[22%] rounded-[20px] bg-white m-[15px] px-[20px] py-[20px]'>
+                    <div className='md:w-[22%] rounded-[20px] bg-white m-[15px] px-[20px] py-[20px]'>
                         <p className='text-black font-bold text-[20px]'>Commision</p>
                         <div className='h-[10px] bg-[#ff5353] w-[100%] rounded-br-[5px] rounded-bl-[5px] mt-[10px]'>
 
@@ -330,23 +329,23 @@ const Home = () => {
                         <p className='text-[14px] font-normal text-black/[0.7] tracking-wide'>Monthly</p>
                     </div>
                 </div>
-                <div className='grid grid-cols-3 gap-[2px]'>
+                <div className='grid md:grid-cols-3 gap-2'>
                     <R3cards title="Weekly Application" lightColor="#dbedf4" color="#7c7e9f" />
                     <R3cards title="Weekly Offer Sent" lightColor="#dbedf4" color="#6fc5eb" />
                     <R3cards title="Weekly Acceptance" lightColor="#dbf4de" color="#7bcb75" />
                 </div>
                 <div className='flex justify-center py-[30px]'>
-                     <div className='flex gap-[10px]'>
-                    <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-[#56bce4]'></div>
-                    <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
-                    <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
-                    <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
-                    <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
-                    <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
-                    <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
+                    <div className='flex gap-[10px]'>
+                        <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-[#56bce4]'></div>
+                        <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
+                        <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
+                        <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
+                        <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
+                        <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
+                        <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
+                    </div>
                 </div>
-                </div>
-               
+
             </div>
         </div>
     )
