@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from '../assets/logo.png';
-import { FaAppStore, FaChevronRight, FaCodeBranch, FaGraduationCap, FaHandshake, FaHome, FaLanguage, FaLightbulb, FaLink, FaLock, FaMoneyBill, FaMoneyBillWave, FaMoneyCheck, FaPercent, FaSchool, FaSearch, FaStickyNote, FaSubway, FaUser, FaUserCheck } from 'react-icons/fa';
+import { FaChevronRight, FaUser, FaCodeBranch, FaGraduationCap, FaHandshake, FaHome, FaLightbulb, FaLink, FaLock, FaMoneyBill, FaMoneyBillWave, FaMoneyCheck, FaPercent, FaSearch, FaStickyNote, FaUserCheck } from 'react-icons/fa';
 
 const Sidebar = () => {
   return (
