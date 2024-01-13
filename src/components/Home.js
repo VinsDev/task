@@ -6,7 +6,7 @@ import { PieChart } from '@mui/x-charts';
 const Home = () => {
     return (
         <div className='min-h-screen bg-[#f6f6f6] md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto'>
-            <div className='md:ml-[15px] md:px-[25px] py-[20px] bg-white rounded-bl-[20px]'>
+            <div className='ml-[15px] md:px-[25px] py-[20px] bg-white rounded-bl-[20px]'>
                 <div className='flex flex-col md:flex-row justify-between items-center'>
                     <div className='mb-[10px] md:mb-0'>
                         <p className='text-[#23255c] text-[16px] leading-[25px] font-normal'>Welcome</p>
