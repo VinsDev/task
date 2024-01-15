@@ -1,7 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
 import Sidebar from './components/Sidebar';
-import DashboardView from './components/Header';
 import { Outlet } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
 
@@ -18,7 +17,7 @@ function App() {
   };
 
   return (
-    <div className="flex">
+    <div className="flex max-w-screen">
       {sidebarVisible && (
         <div className='md:hidden'>
           <div
@@ -29,12 +28,11 @@ function App() {
 
       )}
 
-      <div className={`md:w-[16%] h-screen bg-white text-white ${sidebarVisible ? 'translate-x-0' : '-translate-x-full'} transform transition-transform duration-300 ease-in-out fixed top-0 left-0 md:static md:translate-x-0 md:flex md:inset-0`} style={{ zIndex: sidebarVisible ? '50' : '0' }}>
+      <div className={`md:basic-[16%] bg-white text-white ${sidebarVisible ? 'translate-x-0' : '-translate-x-full'} transform transition-transform duration-300 ease-in-out fixed top-0 left-0 md:static md:translate-x-0 md:flex md:inset-0`} style={{ zIndex: sidebarVisible ? '50' : '0' }}>
         <Sidebar />
       </div>
-
-      <div className='md:flex-grow'>
-        <div className='md:hidden pl-4 pt-4'>
+      <div className='md:basic-[84%]'>
+        <div className='md:hidden pl-8 pt-8 bg-transparent'>
           <FaBars onClick={toggleSidebar} size={25} color='#b0b0b0' />
         </div>
         <div>
