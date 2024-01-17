@@ -734,9 +734,6 @@ const HorizontalBarChart = ({ students, applications }) => {
     const scaledStudents = Math.ceil(students * scaleFactor).toString();
     const scaledApplications = Math.ceil(applications * scaleFactor).toString();
 
-    console.log(scaledStudents);
-    console.log(scaledApplications);
-
     return (
         <div className='border-l-[1px] py-[25px] items-center'>
             <div
