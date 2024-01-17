@@ -5,13 +5,12 @@ import { Outlet } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
 
 
-function App() {
+function App({darkMode}) {
   const [sidebarVisible, setSidebarVisible] = useState(false);
 
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
   };
-
   const closeSidebar = () => {
     setSidebarVisible(false);
   };
@@ -29,7 +28,7 @@ function App() {
       )}
 
       <div className={`md:basic-[16%] bg-white text-white ${sidebarVisible ? 'translate-x-0' : '-translate-x-full'} transform transition-transform duration-300 ease-in-out fixed top-0 left-0 md:static md:translate-x-0 md:flex md:inset-0`} style={{ zIndex: sidebarVisible ? '50' : '0' }}>
-        <Sidebar />
+        <Sidebar darkMode={darkMode} />
       </div>
       <div className='md:basic-[84%]'>
         <div className='md:hidden pl-8 pt-8 bg-transparent'>

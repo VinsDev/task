@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { FaBell, FaBolt, FaCalendar, FaChevronDown, FaDollarSign, FaEnvelope, FaExclamation, FaEyeSlash, FaFilter, FaGlobe, FaImage, FaMoon, FaPaste, FaStarAndCrescent, FaUser, FaVolumeUp, FaWallet } from 'react-icons/fa';
+import { FaBell, FaBolt, FaCalendar, FaChevronDown, FaDollarSign, FaEnvelope, FaExclamation, FaEye, FaEyeSlash, FaFilter, FaGlobe, FaImage, FaMoon, FaPaste, FaStarAndCrescent, FaUser, FaVolumeUp, FaWallet } from 'react-icons/fa';
 import { PieChart } from '@mui/x-charts';
 import '../styles/CircularProgressBar.css';
 import * as utils from '../utils/utils';
+import ThemeSwitcher from '../components/ThemeSwitcher';
 
-const Home = () => {
+const Home = ({ darkMode, setDarkMode }) => {
     // Data . . .
     const withdrawnCardData = {
         amountWithdrawn: "22,748",
@@ -239,6 +240,7 @@ const Home = () => {
     const [studentCardSelectedInterval, setStudentCardSelectedInterval] = useState('Daily');
     const [selectedRow2Tab, setSelectedRow2Tab] = useState('agencies');
     const [activeStudentsTab, setActiveStudentsTab] = useState('offerSent');
+    const [selectedRow3Tab, setSelectedRow3Tab] = useState('Daily');
 
     // State variable handlers . . .
     const toggleFilterVisibility = () => {
@@ -255,6 +257,9 @@ const Home = () => {
     };
     const handleStudentsTabClick = (tab) => {
         setActiveStudentsTab(tab);
+    };
+    const handleRow3TabClick = (tabName) => {
+        setSelectedRow3Tab(tabName);
     };
 
     // Getters . . .
@@ -307,13 +312,13 @@ const Home = () => {
     const currentRow2Data = getRow2DataForSelectedTab();
 
     return (
-        <div className='min-h-screen bg-[#f6f6f6] w-full pl-[15px]'>
+        <div className={`min-h-screen ${darkMode ? 'bg-black' : 'bg-[#f6f6f6]'} w-full pl-[15px]`}>
             {/* Header */}
-            <Header />
+            <Header darkMode={darkMode} setDarkMode={setDarkMode} />
             <div className='relative'>
                 <div className='w-full'>
                     {/* Filter */}
-                    <div className='flex justify-between bg-white rounded-[15px] my-[20px] p-[15px] mr-[65px]'>
+                    <div className={`flex justify-between ${darkMode ? 'bg-dark-gray' : 'bg-white'} rounded-[15px] my-[20px] p-[15px] mr-[65px]`}>
                         <div className='flex items-center justify-center gap-[15px] px-[25px] py-[10px] bg-[#56bce4] rounded-[8px] cursor-pointer' onClick={toggleFilterVisibility}>
                             <FaFilter color='white' size={14} />
                             <p className='text-[14px] font-normal text-white'>Filter</p>
@@ -366,7 +371,7 @@ const Home = () => {
                     <div className='grid grid-cols-1'>
                         <div className='flex overflow-x-auto scroll-container pb-[10px]'>
                             <div className='flex-none'>
-                                <div className='rounded-[20px] bg-white md:min-w-[400px] h-[100%]'>
+                                <div className={`rounded-[20px] ${darkMode ? 'bg-dark-gray' : 'bg-white'} md:min-w-[400px] h-[100%]`}>
                                     <div className='flex justify-between p-[25px] bg-[#dbf4de] rounded-tr-[20px] rounded-tl-[20px]'>
                                         <div className='my-[20px]'>
                                             <FaWallet color='#5cbf54' size={22} />
@@ -383,7 +388,7 @@ const Home = () => {
 
                                             </div>
                                             <div onClick={toggleBalanceVisibility} className='cursor-pointer'>
-                                                <FaEyeSlash color='grey' size={22} />
+                                                {isBalanceHidden ? <FaEye color='grey' size={22} /> : <FaEyeSlash color='grey' size={22} />}
                                             </div>
                                         </div>
                                     </div>
@@ -429,7 +434,7 @@ const Home = () => {
                                 </div>
                             </div>
                             <div className='flex-none'>
-                                <div className='rounded-[20px] bg-white mx-[15px] px-[20px] py-[25px] min-w-[400px] h-[100%]'>
+                                <div className={`rounded-[20px] ${darkMode ? 'bg-dark-gray' : 'bg-white'} mx-[15px] px-[20px] py-[25px] min-w-[400px] h-[100%]`}>
                                     <div className='flex justify-between'>
                                         <div className='space-y-4 md:space-y-12'>
                                             <p className='text-black font-bold text-[20px]'>Student</p>
@@ -526,7 +531,7 @@ const Home = () => {
                                 </div>
                             </div>
                             <div className='flex-none'>
-                                <div className='md:w-[350px] rounded-[20px] bg-white px-[20px] py-[20px] mr-[15px] h-[100%]'>
+                                <div className={`md:w-[350px] rounded-[20px] ${darkMode ? 'bg-dark-gray' : 'bg-white'} px-[20px] py-[20px] mr-[15px] h-[100%]`}>
                                     <p className='text-black font-bold text-[20px]'>Applications</p>
                                     <div className='flex justify-center items-center mt-[60px]'>
                                         <h2 className='text-black text-[24px] font-bold'>{applicationsData.amount}</h2>
@@ -603,7 +608,7 @@ const Home = () => {
             {/* Row 2 */}
             <div className='grid grid-cols-1'>
                 <div className='flex flex-col md:flex-row overflow-x-auto scroll-container'>
-                    <div className='flex-none md:w-[25%] rounded-[20px] bg-white px-[20px] py-[20px] mr-[15px] my-[15px]'>
+                    <div className={`flex-none md:w-[25%] rounded-[20px] ${darkMode ? 'bg-dark-gray' : 'bg-white'} px-[20px] py-[20px] mr-[15px] my-[15px]`}>
                         <p className='text-black font-bold text-[20px]'>{currentRow2Data.card1.title}</p>
                         <div className='flex justify-center items-center mt-[15px]'>
                             <h1 className='text-black/[0.5] text-[12px] font-bold'>Total</h1>
@@ -642,7 +647,7 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='flex-none md:min-w-[44%] rounded-[20px] bg-white px-[20px] py-[20px] shadow-lg mr-[15px] my-[15px]'>
+                    <div className={`flex-none md:min-w-[44%] rounded-[20px] ${darkMode ? 'bg-dark-gray' : 'bg-white'} px-[20px] py-[20px] shadow-lg mr-[15px] my-[15px]`}>
                         <p className='text-black font-bold text-[20px]'>Students</p>
                         <div className='grid grid-cols-3 pt-[20px]'>
                             <StudentsTab
@@ -691,7 +696,7 @@ const Home = () => {
                         </div>
                         <p className='text-black/[0.7] text-[14px] leading-[25px] font-normal mt-4 cursor-pointer'>See all Details</p>
                     </div>
-                    <div className='flex-none md:min-w-[25%] rounded-[20px] bg-white px-[20px] py-[20px] mr-[15px] my-[15px]'>
+                    <div className={`flex-none md:min-w-[25%] rounded-[20px] ${darkMode ? 'bg-dark-gray' : 'bg-white'} px-[20px] py-[20px] mr-[15px] my-[15px]`}>
                         <p className='text-black font-bold text-[20px]'>Commision</p>
                         <div className='h-[10px] bg-[#ff5353] w-[100%] rounded-br-[5px] rounded-bl-[5px] mt-[10px]'>
 
@@ -731,27 +736,36 @@ const Home = () => {
             <p className='text-[20px] font-normal text-black'>General Statistics</p>
             {/* Daily, weekly, monthly buttons */}
             <div className='flex my-[15px]'>
-                <div className='flex items-center justify-center px-[20px] py-[6px] border-b-[1px] border-[#EDEDED]/[0.3] rounded-[6px] cursor-pointer'>
-                    <p className='text-[14px] font-normal text-black/[0.7] tracking-wide'>Daily</p>
+                <div
+                    className={`flex items-center justify-center px-[20px] py-[6px] border-b-[1px] border-[#EDEDED]/[0.3] rounded-[6px] cursor-pointer ${selectedRow3Tab === 'Daily' ? 'bg-[#56bce4]' : ''}`}
+                    onClick={() => handleRow3TabClick('Daily')}
+                >
+                    <p className={`text-[14px] font-normal ${selectedRow3Tab === 'Daily' ? 'text-white' : 'text-black/[0.7]'} tracking-wide`}>Daily</p>
                 </div>
-                <div className='flex items-center justify-center px-[20px] py-[6px] border-b-[1px] border-[#EDEDED]/[0.3] bg-[#56bce4] rounded-[6px] cursor-pointer'>
-                    <p className='text-[14px] font-normal text-white tracking-wide'>Weekly</p>
+                <div
+                    className={`flex items-center justify-center px-[20px] py-[6px] border-b-[1px] border-[#EDEDED]/[0.3] rounded-[6px] cursor-pointer ${selectedRow3Tab === 'Weekly' ? 'bg-[#56bce4]' : ''}`}
+                    onClick={() => handleRow3TabClick('Weekly')}
+                >
+                    <p className={`text-[14px] font-normal ${selectedRow3Tab === 'Weekly' ? 'text-white' : 'text-black/[0.7]'} tracking-wide`}>Weekly</p>
                 </div>
-                <div className='flex items-center justify-center px-[20px] py-[6px] border-b-[1px] border-[#EDEDED]/[0.3] rounded-[6px] cursor-pointer'>
-                    <p className='text-[14px] font-normal text-black/[0.7] tracking-wide'>Monthly</p>
+                <div
+                    className={`flex items-center justify-center px-[20px] py-[6px] border-b-[1px] border-[#EDEDED]/[0.3] rounded-[6px] cursor-pointer ${selectedRow3Tab === 'Monthly' ? 'bg-[#56bce4]' : ''}`}
+                    onClick={() => handleRow3TabClick('Monthly')}
+                >
+                    <p className={`text-[14px] font-normal ${selectedRow3Tab === 'Monthly' ? 'text-white' : 'text-black/[0.7]'} tracking-wide`}>Monthly</p>
                 </div>
             </div>
-            {/* Daily, weekly, monthly Row */}
+            {/* Row 3 */}
             <div className='grid grid-cols-1'>
                 <div className='flex overflow-x-auto scroll-container gap-[10px]'>
                     <div className='flex-none md:min-w-[32%]'>
-                        <DWMcards title="Weekly Application" lightColor="#dbedf4" color="#7c7e9f" />
+                        <DWMcards title="Weekly Application" lightColor="#dbedf4" color="#7c7e9f" darkMode={darkMode}/>
                     </div>
                     <div className='flex-none md:min-w-[32%]'>
-                        <DWMcards title="Weekly Offer Sent" lightColor="#dbedf4" color="#6fc5eb" />
+                        <DWMcards title="Weekly Offer Sent" lightColor="#dbedf4" color="#6fc5eb" darkMode={darkMode}/>
                     </div>
                     <div className='flex-none md:min-w-[32%]'>
-                        <DWMcards title="Weekly Acceptance" lightColor="#dbf4de" color="#7bcb75" />
+                        <DWMcards title="Weekly Acceptance" lightColor="#dbf4de" color="#7bcb75" darkMode={darkMode}/>
                     </div>
                 </div>
             </div>
@@ -771,9 +785,9 @@ const Home = () => {
     )
 };
 
-const Header = () => {
+const Header = ({ darkMode, setDarkMode }) => {
     return (<div>
-        <div className='px-[25px] py-[20px] bg-white rounded-bl-[20px]'>
+        <div className={`px-[25px] py-[20px] ${darkMode ? 'bg-dark-gray' : 'bg-white'} rounded-bl-[20px]`}>
             <div className='flex flex-col md:flex-row justify-between items-center'>
                 <div className='mb-[10px] md:mb-0'>
                     <p className='text-[#23255c] text-[16px] leading-[25px] font-normal'>Welcome</p>
@@ -791,7 +805,7 @@ const Header = () => {
                         </div>
                     </div>
                     <div className='flex items-center gap-[20px] px-[20px]'>
-                        <FaMoon color='#3c3e6e' />
+                        <ThemeSwitcher darkMode={darkMode} setDarkMode={setDarkMode} />
                         <FaGlobe color='#3c3e6e' />
                         <FaUser color='#3c3e6e' />
                     </div>
@@ -843,7 +857,7 @@ const CircularProgressBar = ({ targetValue }) => {
 };
 
 // Daily, weekly, monthly . . .
-const DWMcards = ({ title, lightColor, color }) => {
+const DWMcards = ({ title, lightColor, color, darkMode }) => {
 
     const data = [3, 1, 2, 1, 1, 3, 5];
     const date = [23, 24, 25, 26, 27, 28, 29];
@@ -878,7 +892,7 @@ const DWMcards = ({ title, lightColor, color }) => {
 
     return (
         <div>
-            <div className='rounded-[20px] bg-white p-[25px] mr-[5px] min-w-screen'>
+            <div className={`rounded-[20px] ${darkMode ? 'bg-dark-gray' : 'bg-white'} p-[25px] mr-[5px] min-w-screen`}>
                 <div className='flex items-top justify-between'>
                     <div className='px-[8px]'>
                         <p className=''>{title}</p>
