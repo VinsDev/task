@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FaBell, FaBolt, FaCalendar, FaChevronDown, FaDollarSign, FaEnvelope, FaExclamation, FaEyeSlash, FaFilter, FaGlobe, FaImage, FaMoon, FaPaste, FaStarAndCrescent, FaUser, FaVolumeUp, FaWallet } from 'react-icons/fa';
-import '../styles/CircularProgressBar.css';
 import { PieChart } from '@mui/x-charts';
+import '../styles/CircularProgressBar.css';
+import * as utils from '../utils/utils';
 
 const Home = () => {
     // Data . . .
@@ -37,53 +38,6 @@ const Home = () => {
         active: 210,
         inactive: 135
     };
-    const studentsData = {
-        offerSent: {
-            total: "1,443",
-        },
-        accepted: {
-            total: "1234"
-        },
-        registered: {
-            total: "2344"
-        },
-        counsellorA: {
-            value: 323,
-            percent: 20
-        }
-        ,
-        counsellorB: {
-            value: 230,
-            percent: 17
-        }
-        ,
-        counsellorC: {
-            value: 180,
-            percent: 15
-        }
-        ,
-        others: {
-            value: 573,
-            percent: 35
-        }
-    };
-    const commisionData = {
-        total: "21,355",
-        counsellorA: {
-            value: 323,
-            percent: 20
-        }
-        ,
-        counsellorB: {
-            value: 230,
-            percent: 17
-        }
-        ,
-        counsellorC: {
-            value: 180,
-            percent: 15
-        }
-    }
     const statisiticsData = {
         daily: {
             students: 8,
@@ -95,11 +49,196 @@ const Home = () => {
             students: 2,
         }
     }
+    const row2Data = {
+        agencies: {
+            card1: {
+                title: "Agencies",
+                total: 345,
+                active: 210,
+                inactive: 135
+            },
+            students: {
+                offerSent: {
+                    total: 1443,
+                },
+                accepted: {
+                    total: 1234
+                },
+                registered: {
+                    total: 2344
+                },
+                boxA: {
+                    title: "Agency A",
+                    value: 323,
+                    percent: 20
+                }
+                ,
+                boxB: {
+                    title: "Agency B",
+                    value: 230,
+                    percent: 17
+                }
+                ,
+                boxC: {
+                    title: "Agency C",
+                    value: 180,
+                    percent: 15
+                }
+                ,
+                others: {
+                    value: 573,
+                    percent: 35
+                }
+            },
+            commision: {
+                total: "21,355",
+                boxA: {
+                    title: "Agency A",
+                    value: 323,
+                    percent: 20
+                }
+                ,
+                boxB: {
+                    title: "Agency B",
+                    value: 230,
+                    percent: 17
+                }
+                ,
+                boxC: {
+                    title: "Agency C",
+                    value: 180,
+                    percent: 15
+                }
+            }
+        },
+        counselor: {
+            card1: {
+                title: "Counselor",
+                total: 345,
+                active: 210,
+                inactive: 135
+            },
+            students: {
+                offerSent: {
+                    total: 1443,
+                },
+                accepted: {
+                    total: 1234
+                },
+                registered: {
+                    total: 2344
+                },
+                boxA: {
+                    title: "Counselor A",
+                    value: 323,
+                    percent: 20
+                }
+                ,
+                boxB: {
+                    title: "Counselor B",
+                    value: 230,
+                    percent: 17
+                }
+                ,
+                boxC: {
+                    title: "Counselor C",
+                    value: 180,
+                    percent: 15
+                },
+                others: {
+                    value: 573,
+                    percent: 35
+                }
+            },
+            commision: {
+                total: "21,355",
+                boxA: {
+                    title: "Counselor A",
+                    value: 323,
+                    percent: 20
+                }
+                ,
+                boxB: {
+                    title: "Counselor B",
+                    value: 230,
+                    percent: 17
+                }
+                ,
+                boxC: {
+                    title: "Counselor C",
+                    value: 180,
+                    percent: 15
+                },
+            }
+        },
+        mentor: {
+            card1: {
+                title: "Mentor",
+                total: 345,
+                active: 210,
+                inactive: 135
+            },
+            students: {
+                offerSent: {
+                    total: 1443,
+                },
+                accepted: {
+                    total: 1234
+                },
+                registered: {
+                    total: 2344
+                },
+                boxA: {
+                    title: "Mentor A",
+                    value: 323,
+                    percent: 20
+                }
+                ,
+                boxB: {
+                    title: "Mentor B",
+                    value: 230,
+                    percent: 17
+                }
+                ,
+                boxC: {
+                    title: "Mentor C",
+                    value: 180,
+                    percent: 15
+                },
+                others: {
+                    value: 573,
+                    percent: 35
+                }
+            },
+            commision: {
+                total: "21,355",
+                boxA: {
+                    title: "Mentor A",
+                    value: 323,
+                    percent: 20
+                }
+                ,
+                boxB: {
+                    title: "Mentor B",
+                    value: 230,
+                    percent: 17
+                }
+                ,
+                boxC: {
+                    title: "Mentor C",
+                    value: 180,
+                    percent: 15
+                },
+            }
+        },
+    }
 
     // State variables . . .
     const [isFilterVisible, setFilterVisibility] = useState(false);
     const [isBalanceHidden, setBalanceHidden] = useState(false);
     const [studentCardSelectedInterval, setStudentCardSelectedInterval] = useState('Daily');
+    const [selectedRow2Tab, setSelectedRow2Tab] = useState('agencies');
+    const [activeStudentsTab, setActiveStudentsTab] = useState('offerSent');
 
     // State variable handlers . . .
     const toggleFilterVisibility = () => {
@@ -110,6 +249,12 @@ const Home = () => {
     };
     const handleStudentCardIntervalChange = (interval) => {
         setStudentCardSelectedInterval(interval);
+    };
+    const handleRow2TabClick = (tab) => {
+        setSelectedRow2Tab(tab);
+    };
+    const handleStudentsTabClick = (tab) => {
+        setActiveStudentsTab(tab);
     };
 
     // Getters . . .
@@ -146,8 +291,20 @@ const Home = () => {
                 return {};
         }
     };
-
+    const getRow2DataForSelectedTab = () => {
+        switch (selectedRow2Tab) {
+            case 'agencies':
+                return row2Data.agencies;
+            case 'counselor':
+                return row2Data.counselor;
+            case 'mentor':
+                return row2Data.mentor;
+            default:
+                return {};
+        }
+    };
     const currentStudentCardData = getStudentCardDataForSelectedInterval();
+    const currentRow2Data = getRow2DataForSelectedTab();
 
     return (
         <div className='min-h-screen bg-[#f6f6f6] w-full pl-[15px]'>
@@ -209,12 +366,12 @@ const Home = () => {
                     <div className='grid grid-cols-1'>
                         <div className='flex overflow-x-auto scroll-container pb-[10px]'>
                             <div className='flex-none'>
-                                <div className='rounded-[20px] bg-white min-w-[400px] h-[100%]'>
+                                <div className='rounded-[20px] bg-white md:min-w-[400px] h-[100%]'>
                                     <div className='flex justify-between p-[25px] bg-[#dbf4de] rounded-tr-[20px] rounded-tl-[20px]'>
                                         <div className='my-[20px]'>
                                             <FaWallet color='#5cbf54' size={22} />
                                             <p className='text-[#5cbf54] font-bold text-[16px] mt-[5px]'>Withdrawn</p>
-                                            <p className='text-[#5cbf54] font-bold text-[18px]'>{renderBalance(withdrawnCardData.amountWithdrawn, isBalanceHidden)}</p>
+                                            <p className='text-[#5cbf54] font-bold text-[18px]'>{utils.renderBalance(withdrawnCardData.amountWithdrawn, isBalanceHidden)}</p>
                                         </div>
                                         <div className='flex'>
                                             <div className='flex items-center'>
@@ -244,7 +401,7 @@ const Home = () => {
                                                         <FaWallet color='grey' />
                                                         <p className='text-black/[0.6] font-bold text-[12px]'>Potential</p>
                                                         <p className='text-black/[0.6] font-bold text-[12px]'>Commisions</p>
-                                                        <p className='text-black/[0.7] font-extrabold text-[16px]'>{renderBalance(withdrawnCardData.potentialCommision, isBalanceHidden)}</p>
+                                                        <p className='text-black/[0.7] font-extrabold text-[16px]'>{utils.renderBalance(withdrawnCardData.potentialCommision, isBalanceHidden)}</p>
                                                     </div>
                                                 </div>
                                                 <div>
@@ -254,7 +411,7 @@ const Home = () => {
                                                             <FaDollarSign color='#56bce4' />
                                                             <p className='text-black/[0.6] font-bold text-[12px]'>Earned</p>
                                                             <p className='text-black/[0.6] font-bold text-[12px]'>Commisions</p>
-                                                            <p className='text-[#56bce4] font-extrabold text-[16px]'>{renderBalance(withdrawnCardData.earnedCommision, isBalanceHidden)}</p>
+                                                            <p className='text-[#56bce4] font-extrabold text-[16px]'>{utils.renderBalance(withdrawnCardData.earnedCommision, isBalanceHidden)}</p>
                                                         </div>
                                                     </div>
                                                     <div className='flex h-fit mx-[15px] mt-[35px]'>
@@ -262,7 +419,7 @@ const Home = () => {
                                                         <div className=''>
                                                             <FaExclamation color='red' />
                                                             <p className='text-black/[0.6] font-bold text-[12px]'>Refund</p>
-                                                            <p className='text-[#ff5757] font-extrabold text-[16px]'>{renderBalance(withdrawnCardData.refund, isBalanceHidden)}</p>
+                                                            <p className='text-[#ff5757] font-extrabold text-[16px]'>{utils.renderBalance(withdrawnCardData.refund, isBalanceHidden)}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -315,14 +472,14 @@ const Home = () => {
                                                     <div className='w-[4px] bg-[#5cbf54] rounded-[4px] mx-[10px] my-[4px]'></div>
                                                     <div className=''>
                                                         <p className='text-black/[0.6] font-bold text-[10px]'>Students</p>
-                                                        <p className='text-black/[0.7] font-extrabold text-[16px]'>{addCommasToNumber(currentStudentCardData.students)}</p>
+                                                        <p className='text-black/[0.7] font-extrabold text-[16px]'>{utils.addCommasToNumber(currentStudentCardData.students)}</p>
                                                     </div>
                                                 </div>
                                                 <div className='flex h-fit mx-[15px]'>
                                                     <div className='w-[4px] bg-[#b9cbd3] rounded-[4px] mx-[10px] my-[4px]'></div>
                                                     <div className=''>
                                                         <p className='text-black/[0.6] font-bold text-[10px]'>Applications</p>
-                                                        <p className='text-black/[0.7] font-extrabold text-[16px]'>{addCommasToNumber(currentStudentCardData.applications)}</p>
+                                                        <p className='text-black/[0.7] font-extrabold text-[16px]'>{utils.addCommasToNumber(currentStudentCardData.applications)}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -419,28 +576,40 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            {/* Agencies, Counsellor, Mentor buttons */}
+            {/* Agencies, counselor, Mentor buttons */}
             <div className='flex my-[15px]'>
-                <div className='flex items-center justify-center px-[20px] py-[6px] border-b-[1px] border-[#EDEDED]/[0.3] bg-[#56bce4] rounded-[6px] cursor-pointer'>
-                    <p className='text-[14px] font-normal text-white tracking-wide'>Agencies</p>
+                <div
+                    className={`flex items-center justify-center px-[20px] py-[6px] border-b-[1px] border-[#EDEDED]/[0.3] rounded-[6px] cursor-pointer ${selectedRow2Tab === 'agencies' ? 'bg-[#56bce4]' : ''
+                        }`}
+                    onClick={() => handleRow2TabClick('agencies')}
+                >
+                    <p className={`text-[14px] font-normal ${selectedRow2Tab === 'agencies' ? 'text-white' : 'text-black/[0.7]'} tracking-wide`}>Agencies</p>
                 </div>
-                <div className='flex items-center justify-center px-[20px] py-[6px] border-b-[1px] border-[#EDEDED]/[0.3] rounded-[6px] cursor-pointer'>
-                    <p className='text-[14px] font-normal text-black/[0.7] tracking-wide'>Counsellor</p>
+                <div
+                    className={`flex items-center justify-center px-[20px] py-[6px] border-b-[1px] border-[#EDEDED]/[0.3] rounded-[6px] cursor-pointer ${selectedRow2Tab === 'counselor' ? 'bg-[#56bce4]' : ''
+                        }`}
+                    onClick={() => handleRow2TabClick('counselor')}
+                >
+                    <p className={`text-[14px] font-normal ${selectedRow2Tab === 'counselor' ? 'text-white' : 'text-black/[0.7]'} tracking-wide`}>Counselor</p>
                 </div>
-                <div className='flex items-center justify-center px-[20px] py-[6px] border-b-[1px] border-[#EDEDED]/[0.3] rounded-[6px] cursor-pointer'>
-                    <p className='text-[14px] font-normal text-black/[0.7] tracking-wide'>Mentor</p>
+                <div
+                    className={`flex items-center justify-center px-[20px] py-[6px] border-b-[1px] border-[#EDEDED]/[0.3] rounded-[6px] cursor-pointer ${selectedRow2Tab === 'mentor' ? 'bg-[#56bce4]' : ''
+                        }`}
+                    onClick={() => handleRow2TabClick('mentor')}
+                >
+                    <p className={`text-[14px] font-normal ${selectedRow2Tab === 'mentor' ? 'text-white' : 'text-black/[0.7]'} tracking-wide`}>Mentor</p>
                 </div>
             </div>
-            {/* Agencies, Counsellor, Mentor Row */}
+            {/* Row 2 */}
             <div className='grid grid-cols-1'>
                 <div className='flex flex-col md:flex-row overflow-x-auto scroll-container'>
                     <div className='flex-none md:w-[25%] rounded-[20px] bg-white px-[20px] py-[20px] mr-[15px] my-[15px]'>
-                        <p className='text-black font-bold text-[20px]'>Agencies</p>
+                        <p className='text-black font-bold text-[20px]'>{currentRow2Data.card1.title}</p>
                         <div className='flex justify-center items-center mt-[15px]'>
                             <h1 className='text-black/[0.5] text-[12px] font-bold'>Total</h1>
                         </div>
                         <div className='flex justify-center items-center mt-[10px]'>
-                            <h2 className='text-black text-[22px] font-bold tracking-widest'>{agenciesData.total}</h2>
+                            <h2 className='text-black text-[22px] font-bold tracking-widest'>{currentRow2Data.card1.total}</h2>
                         </div>
                         <div className='flex justify-center items-center pl-[20%]'>
                             <PieChart
@@ -476,45 +645,51 @@ const Home = () => {
                     <div className='flex-none md:min-w-[44%] rounded-[20px] bg-white px-[20px] py-[20px] shadow-lg mr-[15px] my-[15px]'>
                         <p className='text-black font-bold text-[20px]'>Students</p>
                         <div className='grid grid-cols-3 pt-[20px]'>
-                            <div className='border-[1px] flex items-center justify-center'>
-                                <p className='text-black font-bold text-[13px] px-[25px] py-[6px]'>Offer sent</p>
-                            </div>
-                            <div className='border-[1px] flex items-center justify-center'>
-                                <p className='text-black/[0.5] font-bold text-[13px] px-[25px] py-[6px]'>Accepted</p>
-                            </div>
-                            <div className='border-[1px] flex items-center justify-center'>
-                                <p className='text-black/[0.5] font-bold text-[13px] px-[25px] py-[6px]'>Registered</p>
-                            </div>
+                            <StudentsTab
+                                label='Offer sent'
+                                isActive={activeStudentsTab === 'offerSent'}
+                                onClick={() => handleStudentsTabClick('offerSent')}
+                            />
+                            <StudentsTab
+                                label='Accepted'
+                                isActive={activeStudentsTab === 'accepted'}
+                                onClick={() => handleStudentsTabClick('accepted')}
+                            />
+                            <StudentsTab
+                                label='Registered'
+                                isActive={activeStudentsTab === 'registered'}
+                                onClick={() => handleStudentsTabClick('registered')}
+                            />
                         </div>
                         <div className='flex justify-center items-center mt-[40px]'>
-                            <h1 className='text-black/[0.5] text-[12px] font-bold'>Total Offer Sent</h1>
+                            <h1 className='text-black/[0.5] text-[12px] font-bold'>Total {utils.studentTabTitleExtractor(activeStudentsTab)}</h1>
                         </div>
                         <div className='flex justify-center items-center mt-[2px]'>
-                            <h2 className='text-black text-[22px] font-bold tracking-widest'>{studentsData.offerSent.total}</h2>
+                            <h2 className='text-black text-[22px] font-bold tracking-widest'>{utils.addCommasToNumber(currentRow2Data.students.offerSent.total)}</h2>
                         </div>
                         <div className='flex mt-[25px]'>
                             <div className='w-[28%] rounded-[6px] bg-[#4f517d] py-[15px] px-[10px] mx-[2px]'>
-                                <h1 className='text-white text-[12px] font-normal'>Counsellor A</h1>
-                                <h2 className='text-white text-[18px] font-normal'>{studentsData.counsellorA.value}</h2>
-                                <h2 className='text-white text-[16px] font-normal pt-[8px]'>%{studentsData.counsellorA.percent}</h2>
+                                <h1 className='text-white text-[12px] font-normal'>{currentRow2Data.students.boxA.title}</h1>
+                                <h2 className='text-white text-[18px] font-normal'>{currentRow2Data.students.boxA.value}</h2>
+                                <h2 className='text-white text-[16px] font-normal pt-[8px]'>%{currentRow2Data.students.boxA.percent}</h2>
                             </div>
                             <div className='w-[20%] rounded-[6px] bg-[#727497] py-[15px] px-[10px] mx-[2px]'>
-                                <h1 className='text-white text-[12px] font-normal'>Counsellor B</h1>
-                                <h2 className='text-white text-[18px] font-normal'>{studentsData.counsellorB.value}</h2>
-                                <h2 className='text-white text-[16px] font-normal pt-[8px]'>%{studentsData.counsellorB.percent}</h2>
+                                <h1 className='text-white text-[12px] font-normal'>{currentRow2Data.students.boxB.title}</h1>
+                                <h2 className='text-white text-[18px] font-normal'>{currentRow2Data.students.boxB.value}</h2>
+                                <h2 className='text-white text-[16px] font-normal pt-[8px]'>%{currentRow2Data.students.boxB.percent}</h2>
                             </div>
                             <div className='w-[20%] rounded-[6px] bg-[#a1a4d3] py-[15px] px-[10px] mx-[2px]'>
-                                <h1 className='text-white text-[12px] font-normal'>Counsellor C</h1>
-                                <h2 className='text-white text-[18px] font-normal'>{studentsData.counsellorC.value}</h2>
-                                <h2 className='text-white text-[16px] font-normal pt-[8px]'>%{studentsData.counsellorC.percent}</h2>
+                                <h1 className='text-white text-[12px] font-normal'>{currentRow2Data.students.boxC.title}</h1>
+                                <h2 className='text-white text-[18px] font-normal'>{currentRow2Data.students.boxC.value}</h2>
+                                <h2 className='text-white text-[16px] font-normal pt-[8px]'>%{currentRow2Data.students.boxC.percent}</h2>
                             </div>
                             <div className='w-[28%] rounded-[6px] bg-[#7477b7] py-[15px] px-[10px] mx-[2px]'>
                                 <h1 className='text-white text-[12px] font-normal'>Others</h1>
-                                <h2 className='text-white text-[18px] font-normal'>{studentsData.others.value}</h2>
-                                <h2 className='text-white text-[16px] font-normal pt-[8px]'>%{studentsData.others.percent}</h2>
+                                <h2 className='text-white text-[18px] font-normal'>{currentRow2Data.students.others.value}</h2>
+                                <h2 className='text-white text-[16px] font-normal pt-[8px]'>%{currentRow2Data.students.others.percent}</h2>
                             </div>
                         </div>
-                        <p className='text-black/[0.7] text-[14px] leading-[25px] font-normal mt-4'>See all Details</p>
+                        <p className='text-black/[0.7] text-[14px] leading-[25px] font-normal mt-4 cursor-pointer'>See all Details</p>
                     </div>
                     <div className='flex-none md:min-w-[25%] rounded-[20px] bg-white px-[20px] py-[20px] mr-[15px] my-[15px]'>
                         <p className='text-black font-bold text-[20px]'>Commision</p>
@@ -525,31 +700,31 @@ const Home = () => {
                             <h1 className='text-black/[0.5] text-[12px] font-bold'>Total</h1>
                         </div>
                         <div className='flex justify-center items-center mt-[4px]'>
-                            <h2 className='text-black text-[22px] font-bold tracking-widest'>${commisionData.total}</h2>
+                            <h2 className='text-black text-[22px] font-bold tracking-widest'>${currentRow2Data.commision.total}</h2>
                         </div>
                         <p className='text-black/[0.7] text-[14px] leading-[25px] font-bold '>Top Rank</p>
                         <div className='flex items-center justify-between border-b-[2px] py-[4px]'>
                             <div>
-                                <h1 className='text-black text-[12px] font-normal pb-[2px]'>Counsellor A</h1>
-                                <h2 className='text-black text-[14px] font-bold'>{commisionData.counsellorA.value}</h2>
+                                <h1 className='text-black text-[12px] font-normal pb-[2px]'>{currentRow2Data.commision.boxA.title}</h1>
+                                <h2 className='text-black text-[14px] font-bold'>{currentRow2Data.commision.boxA.value}</h2>
                             </div>
-                            <h2 className='text-black text-[14px] font-bold pt-[8px]'>%{commisionData.counsellorA.percent}</h2>
+                            <h2 className='text-black text-[14px] font-bold pt-[8px]'>%{currentRow2Data.commision.boxA.percent}</h2>
                         </div>
                         <div className='flex items-center justify-between border-b-[2px] py-[4px]'>
                             <div>
-                                <h1 className='text-black text-[12px] font-normal pb-[2px]'>Counsellor B</h1>
-                                <h2 className='text-black text-[14px] font-bold'>{commisionData.counsellorB.value}</h2>
+                                <h1 className='text-black text-[12px] font-normal pb-[2px]'>{currentRow2Data.commision.boxB.title}</h1>
+                                <h2 className='text-black text-[14px] font-bold'>{currentRow2Data.commision.boxB.value}</h2>
                             </div>
-                            <h2 className='text-black text-[14px] font-bold pt-[8px]'>%{commisionData.counsellorB.percent}</h2>
+                            <h2 className='text-black text-[14px] font-bold pt-[8px]'>%{currentRow2Data.commision.boxB.percent}</h2>
                         </div>
                         <div className='flex items-center justify-between border-b-[2px] py-[4px]'>
                             <div>
-                                <h1 className='text-black text-[12px] font-normal pb-[2px]'>Counsellor C</h1>
-                                <h2 className='text-black text-[14px] font-bold'>{commisionData.counsellorC.value}</h2>
+                                <h1 className='text-black text-[12px] font-normal pb-[2px]'>{currentRow2Data.commision.boxC.title}</h1>
+                                <h2 className='text-black text-[14px] font-bold'>{currentRow2Data.commision.boxC.value}</h2>
                             </div>
-                            <h2 className='text-black text-[14px] font-bold pt-[8px]'>%{commisionData.counsellorC.percent}</h2>
+                            <h2 className='text-black text-[14px] font-bold pt-[8px]'>%{currentRow2Data.commision.boxC.percent}</h2>
                         </div>
-                        <p className='text-black/[0.7] text-[14px] leading-[25px] font-normal mt-4'>See all Details</p>
+                        <p className='text-black/[0.7] text-[14px] leading-[25px] font-normal mt-4 cursor-pointer'>See all Details</p>
                     </div>
                 </div>
             </div>
@@ -594,10 +769,11 @@ const Home = () => {
             </div>
         </div>
     )
-}
+};
+
 const Header = () => {
     return (<div>
-        <div className='md:px-[25px] py-[20px] bg-white rounded-bl-[20px]'>
+        <div className='px-[25px] py-[20px] bg-white rounded-bl-[20px]'>
             <div className='flex flex-col md:flex-row justify-between items-center'>
                 <div className='mb-[10px] md:mb-0'>
                     <p className='text-[#23255c] text-[16px] leading-[25px] font-normal'>Welcome</p>
@@ -623,7 +799,7 @@ const Header = () => {
             </div>
         </div>
     </div>)
-}
+};
 
 const CircularProgressBar = ({ targetValue }) => {
     const [animationStarted, setAnimationStarted] = useState(false);
@@ -696,7 +872,7 @@ const DWMcards = ({ title, lightColor, color }) => {
     const dateRow = date.map((value, index) => (
         <div key={index}>
             <p>{value}</p>
-            <p>{dfi(index)}</p>
+            <p>{utils.getDayFromIndex(index)}</p>
         </div>
     ));
 
@@ -725,7 +901,7 @@ const DWMcards = ({ title, lightColor, color }) => {
             </div>
         </div>
     )
-}
+};
 
 const HorizontalBarChart = ({ students, applications }) => {
     let maxValue = Math.max(students, applications);
@@ -746,29 +922,16 @@ const HorizontalBarChart = ({ students, applications }) => {
     );
 };
 
-// get day from index . . .
-function dfi(index) {
-    switch (index) {
-        case 0: return "Su";
-        case 1: return "Mo";
-        case 2: return "Tu";
-        case 3: return "We";
-        case 4: return "Th";
-        case 5: return "Fr";
-        case 6: return "Sa";
-    }
-}
-// Returns *** for hidden balance . . .
-function renderBalance(balance, isBalanceHidden) {
-    if (isBalanceHidden) {
-        return "****";
-    }
-    else {
-        return "$" + balance;
-    }
-}
-function addCommasToNumber(numberString) {
-    return Number(numberString).toLocaleString();
+const StudentsTab = ({ label, isActive, onClick }) => {
+    return (
+        <div
+            className={`border-[1px] flex items-center justify-center cursor-pointer ${isActive ? 'text-black' : 'text-black/[0.5]'
+                }`}
+            onClick={onClick}
+        >
+            <p className='text-[13px] font-bold px-[25px] py-[6px]'>{label}</p>
+        </div>
+    );
 }
 
 export default Home
