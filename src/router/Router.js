@@ -6,10 +6,6 @@ import App from '../App';
 const Router = () => {
     const [darkMode, setDarkMode] = useState(false);
 
-    const toggleDarkMode = () => {
-        setDarkMode((prevMode) => !prevMode);
-    };
-
     return (
         <div>
             <BrowserRouter>

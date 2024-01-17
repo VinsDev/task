@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect } from 'react';
 import { FaMoon, FaSun } from 'react-icons/fa';
 
 const ThemeSwitcher = ({darkMode, setDarkMode}) => {

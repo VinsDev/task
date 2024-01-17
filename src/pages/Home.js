@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { FaBell, FaBolt, FaCalendar, FaChevronDown, FaDollarSign, FaEnvelope, FaExclamation, FaEye, FaEyeSlash, FaFilter, FaGlobe, FaImage, FaMoon, FaPaste, FaStarAndCrescent, FaUser, FaVolumeUp, FaWallet } from 'react-icons/fa';
+import { FaBell, FaBolt, FaCalendar, FaChevronDown, FaChevronLeft, FaChevronRight, FaDollarSign, FaEnvelope, FaExclamation, FaEye, FaEyeSlash, FaFilter, FaGlobe, FaImage, FaPaste, FaStarAndCrescent, FaUser, FaVolumeUp, FaWallet } from 'react-icons/fa';
 import { PieChart } from '@mui/x-charts';
 import '../styles/CircularProgressBar.css';
 import * as utils from '../utils/utils';
@@ -39,17 +39,6 @@ const Home = ({ darkMode, setDarkMode }) => {
         active: 210,
         inactive: 135
     };
-    const statisiticsData = {
-        daily: {
-            students: 8,
-        },
-        weekly: {
-            students: 5,
-        },
-        monthly: {
-            students: 2,
-        }
-    }
     const row2Data = {
         agencies: {
             card1: {
@@ -232,7 +221,18 @@ const Home = ({ darkMode, setDarkMode }) => {
                 },
             }
         },
-    }
+    };
+    const statisiticsData = {
+        daily: {
+            students: 8,
+        },
+        weekly: {
+            students: 5,
+        },
+        monthly: {
+            students: 2,
+        }
+    };
 
     // State variables . . .
     const [isFilterVisible, setFilterVisibility] = useState(false);
@@ -346,21 +346,21 @@ const Home = ({ darkMode, setDarkMode }) => {
                                     <p className='font-bold text-[#454545]'>Country</p>
                                     <div className='flex items-center justify-center gap-[15px] px-[25px] py-[10px] bg-[#f0fbff] rounded-[8px] mt-[20px] cursor-pointer'>
                                         <FaChevronDown color='black' size={14} />
-                                        <p className='text-[14px] font-normal text-black'>06.66.2022</p>
+                                        <p className='text-[14px] font-normal text-black'>Turkey</p>
                                     </div>
                                 </div>
                                 <div className='col-span-1'>
                                     <p className='font-bold text-[#454545]'>City</p>
                                     <div className='flex items-center justify-center gap-[15px] px-[25px] py-[10px] bg-[#f0fbff] rounded-[8px] mt-[20px] cursor-pointer'>
                                         <FaChevronDown color='black' size={14} />
-                                        <p className='text-[14px] font-normal text-black'>06.66.2022</p>
+                                        <p className='text-[14px] font-normal text-black'>Antalya</p>
                                     </div>
                                 </div>
                                 <div className='col-span-2'>
                                     <p className='font-bold text-[#454545]'>University</p>
                                     <div className='flex items-center justify-center gap-[15px] px-[25px] py-[10px] bg-[#f0fbff] rounded-[8px] mt-[20px] cursor-pointer'>
                                         <FaChevronDown color='black' size={14} />
-                                        <p className='text-[14px] font-normal text-black'>06.66.2022</p>
+                                        <p className='text-[14px] font-normal text-black'>Antalya Bilm University</p>
                                     </div>
                                 </div>
                             </div>
@@ -756,35 +756,12 @@ const Home = ({ darkMode, setDarkMode }) => {
                 </div>
             </div>
             {/* Row 3 */}
-            <div className='grid grid-cols-1'>
-                <div className='flex overflow-x-auto scroll-container gap-[10px]'>
-                    <div className='flex-none md:min-w-[32%]'>
-                        <DWMcards title="Weekly Application" lightColor="#dbedf4" color="#7c7e9f" darkMode={darkMode}/>
-                    </div>
-                    <div className='flex-none md:min-w-[32%]'>
-                        <DWMcards title="Weekly Offer Sent" lightColor="#dbedf4" color="#6fc5eb" darkMode={darkMode}/>
-                    </div>
-                    <div className='flex-none md:min-w-[32%]'>
-                        <DWMcards title="Weekly Acceptance" lightColor="#dbf4de" color="#7bcb75" darkMode={darkMode}/>
-                    </div>
-                </div>
-            </div>
-            {/* Dots */}
-            <div className='flex justify-center py-[30px]'>
-                <div className='flex gap-[10px]'>
-                    <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-[#56bce4]'></div>
-                    <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
-                    <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
-                    <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
-                    <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
-                    <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
-                    <div className='h-[20px] w-[20px] rounded-full border-[3px] border-white bg-white'></div>
-                </div>
-            </div>
+            <Row3 />
         </div>
     )
 };
 
+// Components . . .
 const Header = ({ darkMode, setDarkMode }) => {
     return (<div>
         <div className={`px-[25px] py-[20px] ${darkMode ? 'bg-dark-gray' : 'bg-white'} rounded-bl-[20px]`}>
@@ -799,10 +776,7 @@ const Header = ({ darkMode, setDarkMode }) => {
                 </div>
                 <div className='flex items-center justify-center'>
                     <div className='pr-[20px] border-r-[1px]'>
-                        <div className='flex items-center justify-center gap-[15px] px-[15px] py-[10px] bg-[#56bce4] rounded-[8px] cursor-pointer'>
-                            <FaChevronDown color='white' size={14} />
-                            <p className='text-[14px] font-normal text-white tracking-wide'>Antalya Bilim University</p>
-                        </div>
+                        <Dropdown />
                     </div>
                     <div className='flex items-center gap-[20px] px-[20px]'>
                         <ThemeSwitcher darkMode={darkMode} setDarkMode={setDarkMode} />
@@ -814,7 +788,6 @@ const Header = ({ darkMode, setDarkMode }) => {
         </div>
     </div>)
 };
-
 const CircularProgressBar = ({ targetValue }) => {
     const [animationStarted, setAnimationStarted] = useState(false);
     const progressValue = useRef(0);
@@ -855,9 +828,7 @@ const CircularProgressBar = ({ targetValue }) => {
         </div>
     );
 };
-
-// Daily, weekly, monthly . . .
-const DWMcards = ({ title, lightColor, color, darkMode }) => {
+const Row3Card = ({ title, lightColor, mainColor, darkMode, colorCode }) => {
 
     const data = [3, 1, 2, 1, 1, 3, 5];
     const date = [23, 24, 25, 26, 27, 28, 29];
@@ -871,7 +842,7 @@ const DWMcards = ({ title, lightColor, color, darkMode }) => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 height: `${value * barHeightMultiplier}px`,
-                backgroundColor: color,
+                backgroundColor: mainColor,
                 width: '20px',
                 borderTopLeftRadius: '10px',
                 borderTopRightRadius: '10px',
@@ -900,13 +871,24 @@ const DWMcards = ({ title, lightColor, color, darkMode }) => {
                         <p className='text-[14px] text-black/[0.7]'>Total</p>
                     </div>
                     <div className={`bg-[${lightColor}] h-[50px] w-[50px] px-[8px] rounded-[6px] flex items-center justify-center`}>
-                        <FaImage color={color} />
+                        <FaImage color={colorCode} />
                     </div>
                 </div>
                 <div>
-                    <div className='items-center justify-center h-[150px] bg-white rounded-[15px] shadow-lg'>
-                        {/* {bars} */}
-
+                    {/* {bars} */}
+                    <div className='relative mt-[15px] w-[77%]'>
+                        <div className='h-[140px]  bg-white rounded-[15px] shadow-lg m-[10px] p-[20px]'>
+                            <div className='flex justify-between'>
+                                <div className='rounded-full shadow-lg p-[6px]'><FaUser /></div>
+                                <p>1/8</p>
+                            </div>
+                            <div className='mt-[20px]'>
+                                <p>Necmettin Murat TENIL</p>
+                                <p>Computer Engineering</p>
+                            </div>
+                        </div>
+                        <div className={`absolute left-[0px] top-1/2 ${mainColor} rounded-[4px] flex items-center justify-center p-[3px]`}><FaChevronLeft color='white' size={16} /></div>
+                        <div className={`absolute right-[0px] top-1/2 ${mainColor} rounded-[4px] flex items-center justify-center p-[3px]`}><FaChevronRight color='white' size={16} /></div>
                     </div>
                     <div className='flex items-end justify-center gap-[15px]'>
                         {/* {dateRow} */}
@@ -916,7 +898,6 @@ const DWMcards = ({ title, lightColor, color, darkMode }) => {
         </div>
     )
 };
-
 const HorizontalBarChart = ({ students, applications }) => {
     let maxValue = Math.max(students, applications);
     let scaleFactor = 200 / maxValue;
@@ -935,7 +916,6 @@ const HorizontalBarChart = ({ students, applications }) => {
         </div>
     );
 };
-
 const StudentsTab = ({ label, isActive, onClick }) => {
     return (
         <div
@@ -947,5 +927,153 @@ const StudentsTab = ({ label, isActive, onClick }) => {
         </div>
     );
 }
+const Dropdown = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedOption, setSelectedOption] = useState('Antalya Bilim University');
+
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+    };
+
+    const handleOptionClick = (option) => {
+        setSelectedOption(option);
+        setIsOpen(false);
+    };
+
+    const options = ['Antalya Bilim University', 'Another University', 'Others'];
+
+    return (
+        <div className='relative'>
+            <div
+                className='flex items-center justify-center gap-[15px] px-[15px] py-[10px] bg-[#56bce4] rounded-[8px] cursor-pointer'
+                onClick={toggleDropdown}
+            >
+                <FaChevronDown color='white' size={14} />
+                <p className='text-[14px] font-normal text-white tracking-wide'>{selectedOption}</p>
+            </div>
+
+            {isOpen && (
+                <div className='absolute top-full left-0 mt-1 bg-white border border-gray-300 rounded-md shadow-lg z-50'>
+                    <ul>
+                        {options.map((option, index) => (
+                            <li
+                                key={index}
+                                className='cursor-pointer px-4 py-2 hover:bg-gray-100'
+                                onClick={() => handleOptionClick(option)}
+                            >
+                                {option}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+        </div>
+    );
+};
+const Row3 = () => {
+    const DummyData = [
+        {
+            title: 'Weekly Application',
+            lightColor: '#dbedf4',
+            mainColor: 'bg-gstats1',
+            darkMode: false,
+            colorCode: '#7c7e9f',
+        },
+        {
+            title: 'Weekly Offer Sent',
+            lightColor: '#dbedf4',
+            mainColor: 'bg-gstats2',
+            darkMode: false,
+            colorCode: '#6fc5eb',
+        },
+        {
+            title: 'Weekly Acceptance',
+            lightColor: '#dbf4de',
+            mainColor: 'bg-gstats3',
+            darkMode: false,
+            colorCode: '#7bcb75',
+        },
+        {
+            title: 'Weekly Application',
+            lightColor: '#dbedf4',
+            mainColor: 'bg-gstats1',
+            darkMode: false,
+            colorCode: '#7c7e9f',
+        },
+        {
+            title: 'Weekly Offer Sent',
+            lightColor: '#dbedf4',
+            mainColor: 'bg-gstats2',
+            darkMode: false,
+            colorCode: '#6fc5eb',
+        },
+        {
+            title: 'Weekly Acceptance',
+            lightColor: '#dbf4de',
+            mainColor: 'bg-gstats3',
+            darkMode: false,
+            colorCode: '#7bcb75',
+        },
+        {
+            title: 'Weekly Offer Sent',
+            lightColor: '#dbedf4',
+            mainColor: 'bg-gstats2',
+            darkMode: false,
+            colorCode: '#6fc5eb',
+        },
+        {
+            title: 'Weekly Acceptance',
+            lightColor: '#dbf4de',
+            mainColor: 'bg-gstats3',
+            darkMode: false,
+            colorCode: '#7bcb75',
+        },
+    ];
+
+    const [activeDot, setActiveDot] = useState(0);
+    const scrollContainerRef = useRef(null);
+
+    const handleDotClick = (index) => {
+        setActiveDot(index);
+        // Get the corresponding card element and scroll it into view
+        const cardElement = scrollContainerRef.current.children[index];
+        cardElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'start',
+        });
+    };
+
+    return (
+        <div className='grid grid-cols-1'>
+            <div ref={scrollContainerRef} className='flex overflow-x-auto scroll-container gap-[10px]'>
+                {DummyData.map((data, index) => (
+                    <div key={index} className='flex-none md:min-w-[32%]'>
+                        <Row3Card
+                            title={data.title}
+                            lightColor={data.lightColor}
+                            mainColor={data.mainColor}
+                            darkMode={data.darkMode}
+                            colorCode={data.colorCode}
+                        />
+                    </div>
+                ))}
+            </div>
+            {/* Dots */}
+            <div className='flex justify-center py-[30px]'>
+                <div className='flex gap-[10px]'>
+                    {DummyData.map((_, index) => (
+                        <div
+                            key={index}
+                            className={`h-[20px] w-[20px] rounded-full border-[3px] border-white ${index === activeDot ? 'bg-[#56bce4]' : 'bg-white'
+                                }`}
+                            onClick={() => handleDotClick(index)}
+                        ></div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export default Home
