@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FaBell, FaBolt, FaChevronDown, FaDollarSign, FaEnvelope, FaExclamation, FaEyeSlash, FaFilter, FaGlobe, FaImage, FaMoon, FaStarAndCrescent, FaUser, FaVolumeUp, FaWallet } from 'react-icons/fa';
-import './CircularProgressBar.css';
+import '../styles/CircularProgressBar.css';
 import { PieChart } from '@mui/x-charts';
 
 const Home = () => {
@@ -27,6 +27,79 @@ const Home = () => {
         offerSent: 1042,
         accepted: 460,
         registered: 232
+    };
+
+    const applicationsData = {
+        amount: "1,000",
+        universal: "2,050",
+        global: "3,030"
+    };
+
+    const agenciesData = {
+        total: 345,
+        active: 210,
+        inactive: 135
+    };
+
+    const studentsData = {
+        offerSent: {
+            total: "1,443",
+        },
+        accepted: {
+            total: "1234"
+        },
+        registered: {
+            total: "2344"
+        },
+        counsellorA: {
+            value: 323,
+            percent: 20
+        }
+        ,
+        counsellorB: {
+            value: 230,
+            percent: 17
+        }
+        ,
+        counsellorC: {
+            value: 180,
+            percent: 15
+        }
+        ,
+        others: {
+            value: 573,
+            percent: 35
+        }
+    };
+
+    const commisionData = {
+        total: "21,355",
+        counsellorA: {
+            value: 323,
+            percent: 20
+        }
+        ,
+        counsellorB: {
+            value: 230,
+            percent: 17
+        }
+        ,
+        counsellorC: {
+            value: 180,
+            percent: 15
+        }
+    }
+
+    const statisiticsData = {
+        daily: {
+            students: 8,
+        },
+        weekly: {
+            students: 5,
+        },
+        monthly: {
+            students: 2,
+        }
     }
 
     return (
@@ -45,9 +118,9 @@ const Home = () => {
                     </div>
                     {/* Row 1 */}
                     <div className='grid grid-cols-1'>
-                        <div className='flex overflow-x-auto scroll-container'>
+                        <div className='flex overflow-x-auto scroll-container pb-[10px]'>
                             <div className='flex-none'>
-                                <div className='rounded-[20px] bg-white min-w-[400px]'>
+                                <div className='rounded-[20px] bg-white min-w-[400px] h-[100%]'>
                                     <div className='flex justify-between p-[25px] bg-[#dbf4de] rounded-tr-[20px] rounded-tl-[20px]'>
                                         <div className='my-[20px]'>
                                             <FaWallet color='#5cbf54' size={22} />
@@ -110,9 +183,9 @@ const Home = () => {
                                 </div>
                             </div>
                             <div className='flex-none'>
-                                <div className='rounded-[20px] bg-white mx-[15px] px-[20px] py-[25px] min-w-[400px]'>
+                                <div className='rounded-[20px] bg-white mx-[15px] px-[20px] py-[25px] min-w-[400px] h-[100%]'>
                                     <div className='flex justify-between'>
-                                        <div className='space-y-4 md:space-y-8 lg:space-y-12'>
+                                        <div className='space-y-4 md:space-y-12'>
                                             <p className='text-black font-bold text-[20px]'>Student</p>
                                             <div>
                                                 <div className='flex justify-center items-center mt-[25px]'>
@@ -188,38 +261,40 @@ const Home = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className='md:w-[22%] rounded-[20px] bg-white px-[20px] py-[20px] mr-[15px] '>
-                                <p className='text-black font-bold text-[20px]'>Applications</p>
-                                <div className='flex justify-center items-center mt-[60px]'>
-                                    <h2 className='text-black text-[24px] font-bold'>345</h2>
-                                </div>
-                                <div className='flex justify-center items-center pl-[20%]'>
-                                    <PieChart
-                                        series={[
-                                            {
-                                                data: [
-                                                    { id: 0, value: 210, color: '#56bce4' },
-                                                    { id: 1, value: 135, color: '#cadcff' },
-                                                ],
-                                            },
-                                        ]}
-                                        width={300}
-                                        height={200}
-                                    />
-                                </div>
-                                <div className='flex justify-center mb-[20px]'>
-                                    <div className='flex h-fit mx-[15px]'>
-                                        <div className='w-[4px] bg-[#56bce4] rounded-[4px] mx-[10px] my-[4px]'></div>
-                                        <div className=''>
-                                            <p className='text-black/[0.6] font-bold text-[10px]'>Universal</p>
-                                            <p className='text-black/[0.7] font-extrabold text-[16px]'>210</p>
-                                        </div>
+                            <div className='flex-none'>
+                                <div className='md:w-[350px] rounded-[20px] bg-white px-[20px] py-[20px] mr-[15px] h-[100%]'>
+                                    <p className='text-black font-bold text-[20px]'>Applications</p>
+                                    <div className='flex justify-center items-center mt-[60px]'>
+                                        <h2 className='text-black text-[24px] font-bold'>{applicationsData.amount}</h2>
                                     </div>
-                                    <div className='flex h-fit mx-[15px]'>
-                                        <div className='w-[4px] bg-[#cadcff] rounded-[4px] mx-[10px] my-[4px]'></div>
-                                        <div className=''>
-                                            <p className='text-black/[0.6] font-bold text-[10px]'>Global</p>
-                                            <p className='text-black/[0.7] font-extrabold text-[16px]'>135</p>
+                                    <div className='flex justify-center items-center pl-[20%]'>
+                                        <PieChart
+                                            series={[
+                                                {
+                                                    data: [
+                                                        { id: 0, value: 210, color: '#56bce4' },
+                                                        { id: 1, value: 135, color: '#cadcff' },
+                                                    ],
+                                                },
+                                            ]}
+                                            width={300}
+                                            height={200}
+                                        />
+                                    </div>
+                                    <div className='flex justify-center mb-[20px]'>
+                                        <div className='flex h-fit mx-[15px]'>
+                                            <div className='w-[4px] bg-[#56bce4] rounded-[4px] mx-[10px] my-[4px]'></div>
+                                            <div className=''>
+                                                <p className='text-black/[0.6] font-bold text-[10px]'>Universal</p>
+                                                <p className='text-black/[0.7] font-extrabold text-[16px]'>{applicationsData.universal}</p>
+                                            </div>
+                                        </div>
+                                        <div className='flex h-fit mx-[15px]'>
+                                            <div className='w-[4px] bg-[#cadcff] rounded-[4px] mx-[10px] my-[4px]'></div>
+                                            <div className=''>
+                                                <p className='text-black/[0.6] font-bold text-[10px]'>Global</p>
+                                                <p className='text-black/[0.7] font-extrabold text-[16px]'>{applicationsData.global}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -250,125 +325,128 @@ const Home = () => {
                 </div>
             </div>
             {/* Agencies, Counsellor, Mentor Row */}
-            <div className='flex flex-col md:flex-row'>
-                <div className='md:w-[22%] rounded-[20px] bg-white px-[20px] py-[20px] mr-[15px] my-[15px]'>
-                    <p className='text-black font-bold text-[20px]'>Agencies</p>
-                    <div className='flex justify-center items-center mt-[25px]'>
-                        <h1 className='text-black/[0.5] text-[12px] font-bold'>Total</h1>
-                    </div>
-                    <div className='flex justify-center items-center mt-[10px]'>
-                        <h2 className='text-black text-[22px] font-bold tracking-widest'>345</h2>
-                    </div>
-                    <div className='flex justify-center items-center pl-[20%]'>
-                        <PieChart
-                            series={[
-                                {
-                                    data: [
-                                        { id: 0, value: 210, color: '#5cbf54' },
-                                        { id: 1, value: 135, color: '#dbf4de' },
-                                    ],
-                                },
-                            ]}
-                            width={300}
-                            height={200}
-                        />
-                    </div>
-                    <div className='flex justify-center mb-[20px]'>
-                        <div className='flex h-fit mx-[15px]'>
-                            <div className='w-[4px] bg-[#5cbf54] rounded-[4px] mx-[10px] my-[4px]'></div>
-                            <div className=''>
-                                <p className='text-black/[0.6] font-bold text-[10px]'>Active</p>
-                                <p className='text-black/[0.7] font-extrabold text-[16px]'>210</p>
+            <div className='grid grid-cols-1'>
+                <div className='flex flex-col md:flex-row overflow-x-auto scroll-container'>
+                    <div className='flex-none md:w-[25%] rounded-[20px] bg-white px-[20px] py-[20px] mr-[15px] my-[15px]'>
+                        <p className='text-black font-bold text-[20px]'>Agencies</p>
+                        <div className='flex justify-center items-center mt-[15px]'>
+                            <h1 className='text-black/[0.5] text-[12px] font-bold'>Total</h1>
+                        </div>
+                        <div className='flex justify-center items-center mt-[10px]'>
+                            <h2 className='text-black text-[22px] font-bold tracking-widest'>{agenciesData.total}</h2>
+                        </div>
+                        <div className='flex justify-center items-center pl-[20%]'>
+                            <PieChart
+                                series={[
+                                    {
+                                        data: [
+                                            { id: 0, value: agenciesData.active, color: '#5cbf54' },
+                                            { id: 1, value: agenciesData.inactive, color: '#dbf4de' },
+                                        ],
+                                    },
+                                ]}
+                                width={300}
+                                height={200}
+                            />
+                        </div>
+                        <div className='flex justify-center mb-[20px]'>
+                            <div className='flex h-fit mx-[15px]'>
+                                <div className='w-[4px] bg-[#5cbf54] rounded-[4px] mx-[10px] my-[4px]'></div>
+                                <div className=''>
+                                    <p className='text-black/[0.6] font-bold text-[10px]'>Active</p>
+                                    <p className='text-black/[0.7] font-extrabold text-[16px]'>{agenciesData.active}</p>
+                                </div>
+                            </div>
+                            <div className='flex h-fit mx-[15px]'>
+                                <div className='w-[4px] bg-[#b9cbd3] rounded-[4px] mx-[10px] my-[4px]'></div>
+                                <div className=''>
+                                    <p className='text-black/[0.6] font-bold text-[10px]'>Inactive</p>
+                                    <p className='text-black/[0.7] font-extrabold text-[16px]'>{agenciesData.inactive}</p>
+                                </div>
                             </div>
                         </div>
-                        <div className='flex h-fit mx-[15px]'>
-                            <div className='w-[4px] bg-[#b9cbd3] rounded-[4px] mx-[10px] my-[4px]'></div>
-                            <div className=''>
-                                <p className='text-black/[0.6] font-bold text-[10px]'>Inactive</p>
-                                <p className='text-black/[0.7] font-extrabold text-[16px]'>135</p>
+                    </div>
+                    <div className='flex-none md:min-w-[44%] rounded-[20px] bg-white px-[20px] py-[20px] shadow-lg mr-[15px] my-[15px]'>
+                        <p className='text-black font-bold text-[20px]'>Students</p>
+                        <div className='grid grid-cols-3 pt-[20px]'>
+                            <div className='border-[1px] flex items-center justify-center'>
+                                <p className='text-black font-bold text-[13px] px-[25px] py-[6px]'>Offer sent</p>
+                            </div>
+                            <div className='border-[1px] flex items-center justify-center'>
+                                <p className='text-black/[0.5] font-bold text-[13px] px-[25px] py-[6px]'>Accepted</p>
+                            </div>
+                            <div className='border-[1px] flex items-center justify-center'>
+                                <p className='text-black/[0.5] font-bold text-[13px] px-[25px] py-[6px]'>Registered</p>
                             </div>
                         </div>
+                        <div className='flex justify-center items-center mt-[40px]'>
+                            <h1 className='text-black/[0.5] text-[12px] font-bold'>Total Offer Sent</h1>
+                        </div>
+                        <div className='flex justify-center items-center mt-[2px]'>
+                            <h2 className='text-black text-[22px] font-bold tracking-widest'>{studentsData.offerSent.total}</h2>
+                        </div>
+                        <div className='flex mt-[25px]'>
+                            <div className='w-[28%] rounded-[6px] bg-[#4f517d] py-[15px] px-[10px] mx-[2px]'>
+                                <h1 className='text-white text-[12px] font-normal'>Counsellor A</h1>
+                                <h2 className='text-white text-[18px] font-normal'>{studentsData.counsellorA.value}</h2>
+                                <h2 className='text-white text-[16px] font-normal pt-[8px]'>%{studentsData.counsellorA.percent}</h2>
+                            </div>
+                            <div className='w-[20%] rounded-[6px] bg-[#727497] py-[15px] px-[10px] mx-[2px]'>
+                                <h1 className='text-white text-[12px] font-normal'>Counsellor B</h1>
+                                <h2 className='text-white text-[18px] font-normal'>{studentsData.counsellorB.value}</h2>
+                                <h2 className='text-white text-[16px] font-normal pt-[8px]'>%{studentsData.counsellorB.percent}</h2>
+                            </div>
+                            <div className='w-[20%] rounded-[6px] bg-[#a1a4d3] py-[15px] px-[10px] mx-[2px]'>
+                                <h1 className='text-white text-[12px] font-normal'>Counsellor C</h1>
+                                <h2 className='text-white text-[18px] font-normal'>{studentsData.counsellorC.value}</h2>
+                                <h2 className='text-white text-[16px] font-normal pt-[8px]'>%{studentsData.counsellorC.percent}</h2>
+                            </div>
+                            <div className='w-[28%] rounded-[6px] bg-[#7477b7] py-[15px] px-[10px] mx-[2px]'>
+                                <h1 className='text-white text-[12px] font-normal'>Others</h1>
+                                <h2 className='text-white text-[18px] font-normal'>{studentsData.others.value}</h2>
+                                <h2 className='text-white text-[16px] font-normal pt-[8px]'>%{studentsData.others.percent}</h2>
+                            </div>
+                        </div>
+                        <p className='text-black/[0.7] text-[14px] leading-[25px] font-normal mt-4'>See all Details</p>
                     </div>
-                </div>
-                <div className='md:w-[44%] rounded-[20px] bg-white px-[20px] py-[20px] shadow-lg mr-[15px] my-[15px]'>
-                    <p className='text-black font-bold text-[20px]'>Students</p>
-                    <div className='grid grid-cols-3 pt-[20px]'>
-                        <div className='border-[1px] flex items-center justify-center'>
-                            <p className='text-black font-bold text-[13px] px-[25px] py-[6px]'>Offer sent</p>
-                        </div>
-                        <div className='border-[1px] flex items-center justify-center'>
-                            <p className='text-black/[0.5] font-bold text-[13px] px-[25px] py-[6px]'>Accepted</p>
-                        </div>
-                        <div className='border-[1px] flex items-center justify-center'>
-                            <p className='text-black/[0.5] font-bold text-[13px] px-[25px] py-[6px]'>Registered</p>
-                        </div>
-                    </div>
-                    <div className='flex justify-center items-center mt-[40px]'>
-                        <h1 className='text-black/[0.5] text-[12px] font-bold'>Total Offer Sent</h1>
-                    </div>
-                    <div className='flex justify-center items-center mt-[2px]'>
-                        <h2 className='text-black text-[22px] font-bold tracking-widest'>1,443</h2>
-                    </div>
-                    <div className='flex mt-[25px]'>
-                        <div className='w-[28%] rounded-[6px] bg-[#4f517d] py-[15px] px-[10px] mx-[2px]'>
-                            <h1 className='text-white text-[12px] font-normal'>Agency A</h1>
-                            <h2 className='text-white text-[18px] font-normal'>323</h2>
-                            <h2 className='text-white text-[16px] font-normal pt-[8px]'>%20</h2>
-                        </div>
-                        <div className='w-[20%] rounded-[6px] bg-[#727497] py-[15px] px-[10px] mx-[2px]'>
-                            <h1 className='text-white text-[12px] font-normal'>Agency B</h1>
-                            <h2 className='text-white text-[18px] font-normal'>323</h2>
-                            <h2 className='text-white text-[16px] font-normal pt-[8px]'>%20</h2>
-                        </div>
-                        <div className='w-[20%] rounded-[6px] bg-[#a1a4d3] py-[15px] px-[10px] mx-[2px]'>
-                            <h1 className='text-white text-[12px] font-normal'>Agency C</h1>
-                            <h2 className='text-white text-[18px] font-normal'>323</h2>
-                            <h2 className='text-white text-[16px] font-normal pt-[8px]'>%20</h2>
-                        </div>
-                        <div className='w-[28%] rounded-[6px] bg-[#7477b7] py-[15px] px-[10px] mx-[2px]'>
-                            <h1 className='text-white text-[12px] font-normal'>Others</h1>
-                            <h2 className='text-white text-[18px] font-normal'>323</h2>
-                            <h2 className='text-white text-[16px] font-normal pt-[8px]'>%20</h2>
-                        </div>
-                    </div>
-                    <p className='text-black/[0.7] text-[14px] leading-[25px] font-normal mt-4'>See all Details</p>
-                </div>
-                <div className='md:w-[22%] rounded-[20px] bg-white px-[20px] py-[20px] mr-[15px] my-[15px]'>
-                    <p className='text-black font-bold text-[20px]'>Commision</p>
-                    <div className='h-[10px] bg-[#ff5353] w-[100%] rounded-br-[5px] rounded-bl-[5px] mt-[10px]'>
+                    <div className='flex-none md:min-w-[25%] rounded-[20px] bg-white px-[20px] py-[20px] mr-[15px] my-[15px]'>
+                        <p className='text-black font-bold text-[20px]'>Commision</p>
+                        <div className='h-[10px] bg-[#ff5353] w-[100%] rounded-br-[5px] rounded-bl-[5px] mt-[10px]'>
 
-                    </div>
-                    <div className='flex justify-center items-center mt-[25px]'>
-                        <h1 className='text-black/[0.5] text-[12px] font-bold'>Total</h1>
-                    </div>
-                    <div className='flex justify-center items-center mt-[4px]'>
-                        <h2 className='text-black text-[22px] font-bold tracking-widest'>$21,355</h2>
-                    </div>
-                    <p className='text-black/[0.7] text-[14px] leading-[25px] font-bold '>Top Rank</p>
-                    <div className='flex items-center justify-between border-b-[2px] py-[4px]'>
-                        <div>
-                            <h1 className='text-black text-[12px] font-normal pb-[2px]'>Agency A</h1>
-                            <h2 className='text-black text-[14px] font-bold'>323</h2>
                         </div>
-                        <h2 className='text-black text-[14px] font-bold pt-[8px]'>%20</h2>
-                    </div>
-                    <div className='flex items-center justify-between border-b-[2px] py-[4px]'>
-                        <div>
-                            <h1 className='text-black text-[12px] font-normal pb-[2px]'>Agency A</h1>
-                            <h2 className='text-black text-[14px] font-bold'>323</h2>
+                        <div className='flex justify-center items-center mt-[25px]'>
+                            <h1 className='text-black/[0.5] text-[12px] font-bold'>Total</h1>
                         </div>
-                        <h2 className='text-black text-[14px] font-bold pt-[8px]'>%20</h2>
-                    </div>
-                    <div className='flex items-center justify-between border-b-[2px] py-[4px]'>
-                        <div>
-                            <h1 className='text-black text-[12px] font-normal pb-[2px]'>Agency A</h1>
-                            <h2 className='text-black text-[14px] font-bold'>323</h2>
+                        <div className='flex justify-center items-center mt-[4px]'>
+                            <h2 className='text-black text-[22px] font-bold tracking-widest'>${commisionData.total}</h2>
                         </div>
-                        <h2 className='text-black text-[14px] font-bold pt-[8px]'>%20</h2>
+                        <p className='text-black/[0.7] text-[14px] leading-[25px] font-bold '>Top Rank</p>
+                        <div className='flex items-center justify-between border-b-[2px] py-[4px]'>
+                            <div>
+                                <h1 className='text-black text-[12px] font-normal pb-[2px]'>Counsellor A</h1>
+                                <h2 className='text-black text-[14px] font-bold'>{commisionData.counsellorA.value}</h2>
+                            </div>
+                            <h2 className='text-black text-[14px] font-bold pt-[8px]'>%{commisionData.counsellorA.percent}</h2>
+                        </div>
+                        <div className='flex items-center justify-between border-b-[2px] py-[4px]'>
+                            <div>
+                                <h1 className='text-black text-[12px] font-normal pb-[2px]'>Counsellor B</h1>
+                                <h2 className='text-black text-[14px] font-bold'>{commisionData.counsellorB.value}</h2>
+                            </div>
+                            <h2 className='text-black text-[14px] font-bold pt-[8px]'>%{commisionData.counsellorB.percent}</h2>
+                        </div>
+                        <div className='flex items-center justify-between border-b-[2px] py-[4px]'>
+                            <div>
+                                <h1 className='text-black text-[12px] font-normal pb-[2px]'>Counsellor C</h1>
+                                <h2 className='text-black text-[14px] font-bold'>{commisionData.counsellorC.value}</h2>
+                            </div>
+                            <h2 className='text-black text-[14px] font-bold pt-[8px]'>%{commisionData.counsellorC.percent}</h2>
+                        </div>
+                        <p className='text-black/[0.7] text-[14px] leading-[25px] font-normal mt-4'>See all Details</p>
                     </div>
-                    <p className='text-black/[0.7] text-[14px] leading-[25px] font-normal mt-4'>See all Details</p>
                 </div>
             </div>
+            <p className='text-[20px] font-normal text-black'>General Statistics</p>
             {/* Daily, weekly, monthly buttons */}
             <div className='flex my-[15px]'>
                 <div className='flex items-center justify-center px-[20px] py-[6px] border-b-[1px] border-[#EDEDED]/[0.3] rounded-[6px] cursor-pointer'>
@@ -383,14 +461,14 @@ const Home = () => {
             </div>
             {/* Daily, weekly, monthly Row */}
             <div className='grid grid-cols-1'>
-                <div className='flex md:flex-row gap-4 overflow-x-auto'>
-                    <div className='flex-1'>
+                <div className='flex overflow-x-auto scroll-container gap-[10px]'>
+                    <div className='flex-none md:min-w-[32%]'>
                         <DWMcards title="Weekly Application" lightColor="#dbedf4" color="#7c7e9f" />
                     </div>
-                    <div className='flex-1'>
+                    <div className='flex-none md:min-w-[32%]'>
                         <DWMcards title="Weekly Offer Sent" lightColor="#dbedf4" color="#6fc5eb" />
                     </div>
-                    <div className='flex-1'>
+                    <div className='flex-none md:min-w-[32%]'>
                         <DWMcards title="Weekly Acceptance" lightColor="#dbf4de" color="#7bcb75" />
                     </div>
                 </div>
@@ -517,20 +595,21 @@ const DWMcards = ({ title, lightColor, color }) => {
 
     return (
         <div>
-            <div className='rounded-[20px] bg-white p-[25px] mr-[5px]'>
+            <div className='rounded-[20px] bg-white p-[25px] mr-[5px] min-w-screen'>
                 <div className='flex items-top justify-between'>
-                    <div>
+                    <div className='px-[8px]'>
                         <p className=''>{title}</p>
                         <span className='flex gap-[6px] items-center pt-[10px]'><h1 className='font-bold text-[22px]'>16</h1><p>students</p></span>
                         <p className='text-[14px] text-black/[0.7]'>Total</p>
                     </div>
-                    <div className={`p-8px bg-[${lightColor}] h-[50px] w-[50px] rounded-[6px] flex items-center justify-center`}>
+                    <div className={`bg-[${lightColor}] h-[50px] w-[50px] px-[8px] rounded-[6px] flex items-center justify-center`}>
                         <FaImage color={color} />
                     </div>
                 </div>
                 <div>
-                    <div className='border-b-[1px] flex items-end justify-center gap-[15px] h-[150px]'>
+                    <div className='items-center justify-center h-[150px] bg-white rounded-[15px] shadow-lg'>
                         {/* {bars} */}
+
                     </div>
                     <div className='flex items-end justify-center gap-[15px]'>
                         {/* {dateRow} */}
