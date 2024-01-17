@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { FaBell, FaBolt, FaChevronDown, FaDollarSign, FaEnvelope, FaExclamation, FaEyeSlash, FaFilter, FaGlobe, FaImage, FaMoon, FaStarAndCrescent, FaUser, FaVolumeUp, FaWallet } from 'react-icons/fa';
+import { FaBell, FaBolt, FaCalendar, FaChevronDown, FaDollarSign, FaEnvelope, FaExclamation, FaEyeSlash, FaFilter, FaGlobe, FaImage, FaMoon, FaPaste, FaStarAndCrescent, FaUser, FaVolumeUp, FaWallet } from 'react-icons/fa';
 import '../styles/CircularProgressBar.css';
 import { PieChart } from '@mui/x-charts';
 
@@ -13,34 +13,30 @@ const Home = () => {
         earnedCommision: "12,443",
         refund: "2,443"
     };
-
     const studentCardData = {
         dailyAverage: 49,
-        dailyStudents: "1,175",
-        dailyApplications: "1,254",
+        dailyStudents: 1175,
+        dailyApplications: 1254,
         weeklyAverage: 123,
-        weeklyStudents: "2,154",
-        weeklyApplications: "3,254",
+        weeklyStudents: 2154,
+        weeklyApplications: 3254,
         monthlyAverage: 345,
-        monthlyStudents: "11,175",
-        monthlyApplications: "21,254",
+        monthlyStudents: 11175,
+        monthlyApplications: 21254,
         offerSent: 1042,
         accepted: 460,
         registered: 232
     };
-
     const applicationsData = {
         amount: "1,000",
         universal: "2,050",
         global: "3,030"
     };
-
     const agenciesData = {
         total: 345,
         active: 210,
         inactive: 135
     };
-
     const studentsData = {
         offerSent: {
             total: "1,443",
@@ -71,7 +67,6 @@ const Home = () => {
             percent: 35
         }
     };
-
     const commisionData = {
         total: "21,355",
         counsellorA: {
@@ -89,7 +84,6 @@ const Home = () => {
             percent: 15
         }
     }
-
     const statisiticsData = {
         daily: {
             students: 8,
@@ -102,6 +96,59 @@ const Home = () => {
         }
     }
 
+    // State variables . . .
+    const [isFilterVisible, setFilterVisibility] = useState(false);
+    const [isBalanceHidden, setBalanceHidden] = useState(false);
+    const [studentCardSelectedInterval, setStudentCardSelectedInterval] = useState('Daily');
+
+    // State variable handlers . . .
+    const toggleFilterVisibility = () => {
+        setFilterVisibility(!isFilterVisible);
+    };
+    const toggleBalanceVisibility = () => {
+        setBalanceHidden(!isBalanceHidden);
+    };
+    const handleStudentCardIntervalChange = (interval) => {
+        setStudentCardSelectedInterval(interval);
+    };
+
+    // Getters . . .
+    const getStudentCardDataForSelectedInterval = () => {
+        switch (studentCardSelectedInterval) {
+            case 'Daily':
+                return {
+                    average: studentCardData.dailyAverage,
+                    students: studentCardData.dailyStudents,
+                    applications: studentCardData.dailyApplications,
+                    offerSent: studentCardData.offerSent,
+                    accepted: studentCardData.accepted,
+                    registered: studentCardData.registered,
+                };
+            case 'Weekly':
+                return {
+                    average: studentCardData.weeklyAverage,
+                    students: studentCardData.weeklyStudents,
+                    applications: studentCardData.weeklyApplications,
+                    offerSent: studentCardData.offerSent,
+                    accepted: studentCardData.accepted,
+                    registered: studentCardData.registered,
+                };
+            case 'Monthly':
+                return {
+                    average: studentCardData.monthlyAverage,
+                    students: studentCardData.monthlyStudents,
+                    applications: studentCardData.monthlyApplications,
+                    offerSent: studentCardData.offerSent,
+                    accepted: studentCardData.accepted,
+                    registered: studentCardData.registered,
+                };
+            default:
+                return {};
+        }
+    };
+
+    const currentStudentCardData = getStudentCardDataForSelectedInterval();
+
     return (
         <div className='min-h-screen bg-[#f6f6f6] w-full pl-[15px]'>
             {/* Header */}
@@ -110,12 +157,54 @@ const Home = () => {
                 <div className='w-full'>
                     {/* Filter */}
                     <div className='flex justify-between bg-white rounded-[15px] my-[20px] p-[15px] mr-[65px]'>
-                        <div className='flex items-center justify-center gap-[15px] px-[25px] py-[10px] bg-[#56bce4] rounded-[8px] cursor-pointer'>
+                        <div className='flex items-center justify-center gap-[15px] px-[25px] py-[10px] bg-[#56bce4] rounded-[8px] cursor-pointer' onClick={toggleFilterVisibility}>
                             <FaFilter color='white' size={14} />
                             <p className='text-[14px] font-normal text-white'>Filter</p>
                         </div>
                         <div></div>
                     </div>
+                    {/* Filter container */}
+                    {isFilterVisible && (
+                        <div className='bg-white rounded-[15px] my-[20px] p-[15px] mr-[65px] absolute top-[60px] shadow-lg z-40'>
+                            <div className='border-b-[1px] pb-[10px] mb-[10px] grid md:grid-cols-3 lg:grid-cols-6 lg:gap-[60px] md:gap-[15px]'>
+                                <div className='col-span-2'>
+                                    <p className='font-bold text-[#454545]'>Date Range</p>
+                                    <div className='flex gap-[10px] pt-[20px]'>
+                                        <div className='flex items-center justify-center gap-[15px] px-[25px] py-[10px] bg-[#f0fbff] rounded-[8px] cursor-pointer'>
+                                            <FaPaste color='black' size={14} />
+                                            <p className='text-[14px] font-normal text-black'>06.66.2022</p>
+                                        </div>
+                                        <div className='flex items-center justify-center gap-[15px] px-[25px] py-[10px] bg-[#f0fbff] rounded-[8px] cursor-pointer'>
+                                            <FaCalendar color='black' size={14} />
+                                            <p className='text-[14px] font-normal text-black'>06.66.2022</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='col-span-1'>
+                                    <p className='font-bold text-[#454545]'>Country</p>
+                                    <div className='flex items-center justify-center gap-[15px] px-[25px] py-[10px] bg-[#f0fbff] rounded-[8px] mt-[20px] cursor-pointer'>
+                                        <FaChevronDown color='black' size={14} />
+                                        <p className='text-[14px] font-normal text-black'>06.66.2022</p>
+                                    </div>
+                                </div>
+                                <div className='col-span-1'>
+                                    <p className='font-bold text-[#454545]'>City</p>
+                                    <div className='flex items-center justify-center gap-[15px] px-[25px] py-[10px] bg-[#f0fbff] rounded-[8px] mt-[20px] cursor-pointer'>
+                                        <FaChevronDown color='black' size={14} />
+                                        <p className='text-[14px] font-normal text-black'>06.66.2022</p>
+                                    </div>
+                                </div>
+                                <div className='col-span-2'>
+                                    <p className='font-bold text-[#454545]'>University</p>
+                                    <div className='flex items-center justify-center gap-[15px] px-[25px] py-[10px] bg-[#f0fbff] rounded-[8px] mt-[20px] cursor-pointer'>
+                                        <FaChevronDown color='black' size={14} />
+                                        <p className='text-[14px] font-normal text-black'>06.66.2022</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Reset</p>
+                        </div>
+                    )}
                     {/* Row 1 */}
                     <div className='grid grid-cols-1'>
                         <div className='flex overflow-x-auto scroll-container pb-[10px]'>
@@ -125,7 +214,7 @@ const Home = () => {
                                         <div className='my-[20px]'>
                                             <FaWallet color='#5cbf54' size={22} />
                                             <p className='text-[#5cbf54] font-bold text-[16px] mt-[5px]'>Withdrawn</p>
-                                            <p className='text-[#5cbf54] font-bold text-[18px]'>${withdrawnCardData.amountWithdrawn}</p>
+                                            <p className='text-[#5cbf54] font-bold text-[18px]'>{renderBalance(withdrawnCardData.amountWithdrawn, isBalanceHidden)}</p>
                                         </div>
                                         <div className='flex'>
                                             <div className='flex items-center'>
@@ -136,7 +225,7 @@ const Home = () => {
                                                 </div>
 
                                             </div>
-                                            <div>
+                                            <div onClick={toggleBalanceVisibility} className='cursor-pointer'>
                                                 <FaEyeSlash color='grey' size={22} />
                                             </div>
                                         </div>
@@ -146,7 +235,7 @@ const Home = () => {
                                         <div className='flex pt-[25px] justify-between'>
                                             <div className='items-center space-y-4 md:space-y-8 lg:space-y-12'>
                                                 <CircularProgressBar targetValue={withdrawnCardData.percentageCommision} />
-                                                <p className='text-black/[0.7] text-[14px] leading-[25px] font-normal mt-4'>See all Details</p>
+                                                <p className='text-black/[0.7] text-[14px] leading-[25px] font-normal mt-4 cursor-pointer'>See all Details</p>
                                             </div>
                                             <div className='flex'>
                                                 <div className='flex h-fit mx-[15px]'>
@@ -155,7 +244,7 @@ const Home = () => {
                                                         <FaWallet color='grey' />
                                                         <p className='text-black/[0.6] font-bold text-[12px]'>Potential</p>
                                                         <p className='text-black/[0.6] font-bold text-[12px]'>Commisions</p>
-                                                        <p className='text-black/[0.7] font-extrabold text-[16px]'>${withdrawnCardData.potentialCommision}</p>
+                                                        <p className='text-black/[0.7] font-extrabold text-[16px]'>{renderBalance(withdrawnCardData.potentialCommision, isBalanceHidden)}</p>
                                                     </div>
                                                 </div>
                                                 <div>
@@ -165,7 +254,7 @@ const Home = () => {
                                                             <FaDollarSign color='#56bce4' />
                                                             <p className='text-black/[0.6] font-bold text-[12px]'>Earned</p>
                                                             <p className='text-black/[0.6] font-bold text-[12px]'>Commisions</p>
-                                                            <p className='text-[#56bce4] font-extrabold text-[16px]'>${withdrawnCardData.earnedCommision}</p>
+                                                            <p className='text-[#56bce4] font-extrabold text-[16px]'>{renderBalance(withdrawnCardData.earnedCommision, isBalanceHidden)}</p>
                                                         </div>
                                                     </div>
                                                     <div className='flex h-fit mx-[15px] mt-[35px]'>
@@ -173,7 +262,7 @@ const Home = () => {
                                                         <div className=''>
                                                             <FaExclamation color='red' />
                                                             <p className='text-black/[0.6] font-bold text-[12px]'>Refund</p>
-                                                            <p className='text-[#ff5757] font-extrabold text-[16px]'>${withdrawnCardData.refund}</p>
+                                                            <p className='text-[#ff5757] font-extrabold text-[16px]'>{renderBalance(withdrawnCardData.refund, isBalanceHidden)}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -189,33 +278,51 @@ const Home = () => {
                                             <p className='text-black font-bold text-[20px]'>Student</p>
                                             <div>
                                                 <div className='flex justify-center items-center mt-[25px]'>
-                                                    <h1 className='text-black/[0.5] text-[12px] font-bold'>Daily Average</h1>
+                                                    <h1 className='text-black/[0.5] text-[12px] font-bold'>{studentCardSelectedInterval} Average</h1>
                                                 </div>
                                                 <div className='flex justify-center items-center mt-[10px]'>
-                                                    <h2 className='text-black text-[22px] font-bold tracking-widest'>{studentCardData.dailyAverage}</h2>
+                                                    <h2 className='text-black text-[22px] font-bold tracking-widest'>{currentStudentCardData.average}</h2>
                                                 </div>
                                                 <div className='flex justify-center items-center gap-[10px] h-fit mt-[10px]'>
-                                                    <p className='text-black text-[10px] font-bold tracking-widest'>Daily</p>
+                                                    <p
+                                                        className={`text-black/[0.5] text-[10px] font-bold tracking-widest ${studentCardSelectedInterval === 'Daily' ? 'text-blue-500' : ''
+                                                            } cursor-pointer`}
+                                                        onClick={() => handleStudentCardIntervalChange('Daily')}
+                                                    >
+                                                        Daily
+                                                    </p>
                                                     <div className='w-[1.5px] h-[12px] bg-[#dadada] rounded-[1px]'></div>
-                                                    <p className='text-black/[0.5] text-[10px] font-bold tracking-widest'>Weekly</p>
+                                                    <p
+                                                        className={`text-black/[0.5] text-[10px] font-bold tracking-widest ${studentCardSelectedInterval === 'Weekly' ? 'text-blue-500' : ''
+                                                            } cursor-pointer`}
+                                                        onClick={() => handleStudentCardIntervalChange('Weekly')}
+                                                    >
+                                                        Weekly
+                                                    </p>
                                                     <div className='w-[1.5px] h-[12px] bg-[#dadada] rounded-[1px]'></div>
-                                                    <p className='text-black/[0.5] text-[10px] font-bold tracking-widest'>Monthly</p>
+                                                    <p
+                                                        className={`text-black/[0.5] text-[10px] font-bold tracking-widest ${studentCardSelectedInterval === 'Monthly' ? 'text-blue-500' : ''
+                                                            } cursor-pointer`}
+                                                        onClick={() => handleStudentCardIntervalChange('Monthly')}
+                                                    >
+                                                        Monthly
+                                                    </p>
                                                 </div>
                                             </div>
-                                            <HorizontalBarChart />
+                                            <HorizontalBarChart students={currentStudentCardData.students} applications={currentStudentCardData.applications} />
                                             <div className='flex mt-[15px]'>
                                                 <div className='flex h-fit mx-[15px]'>
                                                     <div className='w-[4px] bg-[#5cbf54] rounded-[4px] mx-[10px] my-[4px]'></div>
                                                     <div className=''>
                                                         <p className='text-black/[0.6] font-bold text-[10px]'>Students</p>
-                                                        <p className='text-black/[0.7] font-extrabold text-[16px]'>{studentCardData.dailyStudents}</p>
+                                                        <p className='text-black/[0.7] font-extrabold text-[16px]'>{addCommasToNumber(currentStudentCardData.students)}</p>
                                                     </div>
                                                 </div>
                                                 <div className='flex h-fit mx-[15px]'>
                                                     <div className='w-[4px] bg-[#b9cbd3] rounded-[4px] mx-[10px] my-[4px]'></div>
                                                     <div className=''>
                                                         <p className='text-black/[0.6] font-bold text-[10px]'>Applications</p>
-                                                        <p className='text-black/[0.7] font-extrabold text-[16px]'>{studentCardData.dailyApplications}</p>
+                                                        <p className='text-black/[0.7] font-extrabold text-[16px]'>{addCommasToNumber(currentStudentCardData.applications)}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -227,7 +334,7 @@ const Home = () => {
                                                     <p className='text-[#51bae7] font-bold text-[14px]'>Offer Sent</p>
                                                 </div>
                                                 <div className='flex items-center justify-center'>
-                                                    <p className='text-[#51bae7] font-bold text-[18px] leading-[10px] mt-[25px]'>{studentCardData.offerSent}</p>
+                                                    <p className='text-[#51bae7] font-bold text-[18px] leading-[10px] mt-[25px]'>{currentStudentCardData.offerSent}</p>
                                                 </div>
                                                 <div className='flex items-center justify-center'>
                                                     <p className='text-black/[0.7] font-bold text-[14px] leading-[40px]'>See all Details</p>
@@ -239,7 +346,7 @@ const Home = () => {
                                                     <p className='text-[#e39735] font-bold text-[14px]'>Accepted</p>
                                                 </div>
                                                 <div className='flex items-center justify-center'>
-                                                    <p className='text-[#e39735] font-bold text-[18px] leading-[10px] mt-[25px]'>{studentCardData.accepted}</p>
+                                                    <p className='text-[#e39735] font-bold text-[18px] leading-[10px] mt-[25px]'>{currentStudentCardData.accepted}</p>
                                                 </div>
                                                 <div className='flex items-center justify-center'>
                                                     <p className='text-black/[0.7] font-bold text-[14px] leading-[40px]'>See all Details</p>
@@ -251,7 +358,7 @@ const Home = () => {
                                                     <p className='text-[#65c35e] font-bold text-[14px]'>Registered</p>
                                                 </div>
                                                 <div className='flex items-center justify-center'>
-                                                    <p className='text-[#65c35e] font-bold text-[18px] leading-[10px] mt-[25px]'>{studentCardData.registered}</p>
+                                                    <p className='text-[#65c35e] font-bold text-[18px] leading-[10px] mt-[25px]'>{currentStudentCardData.registered}</p>
                                                 </div>
                                                 <div className='flex items-center justify-center'>
                                                     <p className='text-black/[0.7] font-bold text-[14px] leading-[40px]'>See all Details</p>
@@ -620,13 +727,25 @@ const DWMcards = ({ title, lightColor, color }) => {
     )
 }
 
-const HorizontalBarChart = () => {
+const HorizontalBarChart = ({ students, applications }) => {
+    let maxValue = Math.max(students, applications);
+    let scaleFactor = 200 / maxValue;
+
+    const scaledStudents = Math.ceil(students * scaleFactor).toString();
+    const scaledApplications = Math.ceil(applications * scaleFactor).toString();
+
+    console.log(scaledStudents);
+    console.log(scaledApplications);
+
     return (
         <div className='border-l-[1px] py-[25px] items-center'>
-            <div className='h-[25px] bg-[#5cbf54] w-[150px] rounded-tr-[8px] rounded-br-[8px] my-[10px]'></div>
-            <div className='h-[25px] bg-[#dbf4de] w-[200px] rounded-tr-[8px] rounded-br-[8px] my-[10px]'></div>
+            <div
+                className={`h-[25px] bg-[#5cbf54] w-[${scaledStudents}px] rounded-tr-[8px] rounded-br-[8px] my-[10px]`}
+            ></div>
+            <div
+                className={`h-[25px] bg-[#dbf4de] w-[${scaledApplications}px] rounded-tr-[8px] rounded-br-[8px] my-[10px]`}
+            ></div>
         </div>
-
     );
 };
 
@@ -641,6 +760,18 @@ function dfi(index) {
         case 5: return "Fr";
         case 6: return "Sa";
     }
+}
+// Returns *** for hidden balance . . .
+function renderBalance(balance, isBalanceHidden) {
+    if (isBalanceHidden) {
+        return "****";
+    }
+    else {
+        return "$" + balance;
+    }
+}
+function addCommasToNumber(numberString) {
+    return Number(numberString).toLocaleString();
 }
 
 export default Home
