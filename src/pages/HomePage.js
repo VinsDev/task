@@ -1,6 +1,5 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react';
-import { PieChart } from '@mui/x-charts';
 import '../styles/CircularProgressBar.css';
 import * as utils from '../utils/utils';
 import ThemeSwitcher from '../components/ThemeSwitcher';
@@ -10,7 +9,11 @@ import WithdrawIcon from '../../public/icons/withdrawn.svg'
 import PotentialCommisionIcon from '../../public/icons/potential-commision.svg'
 import EarnedCommisionIcon from '../../public/icons/earned-commision.svg'
 import RefundIcon from '../../public/icons/refund.svg'
-import { FaBell, FaBolt, FaCalendar, FaChevronDown, FaChevronLeft, FaChevronRight, FaDollarSign, FaEnvelope, FaExclamation, FaEye, FaEyeSlash, FaFilter, FaGlobe, FaImage, FaPaste, FaUser, FaVolumeUp } from 'react-icons/fa';
+import { FaBell, FaBolt, FaCalendar, FaChevronDown, FaChevronLeft, FaChevronRight, FaEnvelope, FaExclamation, FaEye, FaEyeSlash, FaFilter, FaGlobe, FaImage, FaPaste, FaUser, FaVolumeUp } from 'react-icons/fa';
+
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Pie } from 'react-chartjs-2';
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const HomePage = ({ darkMode, setDarkMode }) => {
     // Data . . .
@@ -240,6 +243,43 @@ const HomePage = ({ darkMode, setDarkMode }) => {
             students: 2,
         }
     };
+    const pieChartData = {
+        labels: ['', ''],
+        datasets: [
+            {
+                label: '',
+                data: [2050, 3030],
+                backgroundColor: [
+                    '#56bce4',
+                    '#cadcff'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 0)',
+                    'rgba(54, 162, 235, 0)',
+                ],
+                borderWidth: 1,
+            },
+        ],
+    };
+
+    const pieChartData2 = {
+        labels: ['', ''],
+        datasets: [
+            {
+                label: '',
+                data: [210, 135],
+                backgroundColor: [
+                    '#5cbf54',
+                    '#dbf4de'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 0)',
+                    'rgba(54, 162, 235, 0)',
+                ],
+                borderWidth: 1,
+            },
+        ],
+    };
 
     // State variables . . .
     const [isFilterVisible, setFilterVisibility] = useState(false);
@@ -449,7 +489,7 @@ const HomePage = ({ darkMode, setDarkMode }) => {
                                                         <div className='flex h-fit mx-[15px]'>
                                                             <div className='w-[4px] bg-[#56bce4] rounded-[4px] mx-[10px] my-[4px]'></div>
                                                             <div className=''>
-                                                                <FaDollarSign color='#56bce4' />
+                                                                <Image src={EarnedCommisionIcon} alt="Earned Commision Icon" />
                                                                 <p className='text-black/[0.6] font-bold text-[12px]'>Earned</p>
                                                                 <p className='text-black/[0.6] font-bold text-[12px]'>Commisions</p>
                                                                 <p className='text-[#56bce4] font-extrabold text-[16px]'>{utils.renderBalance(withdrawnCardData.earnedCommision, isBalanceHidden)}</p>
@@ -458,6 +498,7 @@ const HomePage = ({ darkMode, setDarkMode }) => {
                                                         <div className='flex h-fit mx-[15px] mt-[35px]'>
                                                             <div className='w-[4px] bg-[#ff5757] rounded-[4px] mx-[10px] my-[4px]'></div>
                                                             <div className=''>
+                                                                {/* <Image src={RefundIcon} alt="Refund Icon" /> */}
                                                                 <FaExclamation color='red' />
                                                                 <p className='text-black/[0.6] font-bold text-[12px]'>Refund</p>
                                                                 <p className='text-[#ff5757] font-extrabold text-[16px]'>{utils.renderBalance(withdrawnCardData.refund, isBalanceHidden)}</p>
@@ -572,21 +613,13 @@ const HomePage = ({ darkMode, setDarkMode }) => {
                                         <div className='flex justify-center items-center mt-[60px]'>
                                             <h2 className='text-black text-[24px] font-bold'>{applicationsData.amount}</h2>
                                         </div>
-                                        <div className='flex justify-center items-center pl-[20%]'>
-                                            <PieChart
-                                                series={[
-                                                    {
-                                                        data: [
-                                                            { id: 0, value: 210, color: '#56bce4' },
-                                                            { id: 1, value: 135, color: '#cadcff' },
-                                                        ],
-                                                    },
-                                                ]}
-                                                width={300}
-                                                height={200}
-                                            />
+                                        <div className='flex justify-center items-center'>
+                                            <div className='relative max-w-[210px]'>
+                                                <Pie data={pieChartData} />
+                                                <div className='absolute top-0 h-[30px] w-full bg-white'></div>
+                                            </div>
                                         </div>
-                                        <div className='flex justify-center mb-[20px]'>
+                                        <div className='flex justify-center mb-[20px] mt-[40px]'>
                                             <div className='flex h-fit mx-[15px]'>
                                                 <div className='w-[4px] bg-[#56bce4] rounded-[4px] mx-[10px] my-[4px]'></div>
                                                 <div className=''>
@@ -667,21 +700,15 @@ const HomePage = ({ darkMode, setDarkMode }) => {
                         <div className='flex justify-center items-center mt-[10px]'>
                             <h2 className='text-black text-[22px] font-bold tracking-widest'>{currentRow2Data.card1.total}</h2>
                         </div>
-                        <div className='flex justify-center items-center pl-[20%]'>
-                            <PieChart
-                                series={[
-                                    {
-                                        data: [
-                                            { id: 0, value: agenciesData.active, color: '#5cbf54' },
-                                            { id: 1, value: agenciesData.inactive, color: '#dbf4de' },
-                                        ],
-                                    },
-                                ]}
-                                width={300}
-                                height={200}
-                            />
+                        <div className='flex justify-center items-center'>
+                            <div className='flex justify-center items-center'>
+                                <div className='relative max-w-[200px]'>
+                                    <Pie data={pieChartData2} />
+                                    <div className='absolute top-0 h-[30px] w-full bg-white'></div>
+                                </div>
+                            </div>
                         </div>
-                        <div className='flex justify-center mb-[20px]'>
+                        <div className='flex justify-center mb-[20px] mt-[20px]'>
                             <div className='flex h-fit mx-[15px]'>
                                 <div className='w-[4px] bg-[#5cbf54] rounded-[4px] mx-[10px] my-[4px]'></div>
                                 <div className=''>

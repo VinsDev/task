@@ -8,6 +8,7 @@ module.exports = {
         gstats1: '#7c7e9f',
         gstats2: '#6fc5eb',
         gstats3: '#7bcb75',
+        primary: '#56bce4',
       },
       backgroundColor: {
         'dark-gray': '#1a202c', // Adjust the color to your dark mode background color
