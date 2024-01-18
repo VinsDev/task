@@ -10,7 +10,7 @@ import WithdrawIcon from '../../public/icons/withdrawn.svg'
 import PotentialCommisionIcon from '../../public/icons/potential-commision.svg'
 import EarnedCommisionIcon from '../../public/icons/earned-commision.svg'
 import RefundIcon from '../../public/icons/refund.svg'
-import { FaBell, FaBolt, FaChevronDown, FaChevronLeft, FaChevronRight, FaDollarSign, FaEnvelope, FaExclamation, FaEye, FaEyeSlash, FaFilter, FaGlobe, FaImage, FaUser, FaVolumeUp } from 'react-icons/fa';
+import { FaBell, FaBolt, FaCalendar, FaChevronDown, FaChevronLeft, FaChevronRight, FaDollarSign, FaEnvelope, FaExclamation, FaEye, FaEyeSlash, FaFilter, FaGlobe, FaImage, FaPaste, FaUser, FaVolumeUp } from 'react-icons/fa';
 
 const HomePage = ({ darkMode, setDarkMode }) => {
     // Data . . .
