@@ -62,3 +62,35 @@
 .scroll-container::-moz-scrollbar-track {
   background-color: #f1f1f1;
 }
+
+
+/* Scroll 2 . . . . . */
+.scroll-container2:hover {
+  overflow-x: auto;
+}
+
+/* Style for WebKit (Chrome, Safari) browsers */
+.scroll-container2::-webkit-scrollbar {
+  height: 7px; /* Set the height as needed */
+}
+
+.scroll-container2::-webkit-scrollbar-thumb {
+  background-color: #c0bfbf;
+  border-radius: 10px;
+  margin-top: 25px; /* Adjust the margin-top to move the scrollbar down */
+}
+
+.scroll-container2::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+/* Style for Firefox browser */
+.scroll-container2::-moz-scrollbar-thumb {
+  background-color: #bebebe;
+  border-radius: 10px;
+  margin-top: 25px; /* Adjust the margin-top to move the scrollbar down */
+}
+
+.scroll-container2::-moz-scrollbar-track {
+  background-color: #f1f1f1;
+}

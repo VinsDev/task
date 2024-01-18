@@ -5,6 +5,10 @@ import '../styles/CircularProgressBar.css';
 import * as utils from '../utils/utils';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import SuperAdminIcon from '../assets/icons/superadmin.svg'
+import WithdrawIcon from '../assets/icons/withdrawn.svg'
+import PotentialCommisionIcon from '../assets/icons/potential-commision.svg'
+import EarnedCommisionIcon from '../assets/icons/earned-commision.svg'
+import RefundIcon from '../assets/icons/refund.svg'
 
 const Home = ({ darkMode, setDarkMode }) => {
     // Data . . .
@@ -404,7 +408,7 @@ const Home = ({ darkMode, setDarkMode }) => {
                                     <div className={`rounded-[20px] ${darkMode ? 'bg-dark-gray' : 'bg-white'} md:min-w-[400px] h-[100%]`}>
                                         <div className='flex justify-between p-[25px] bg-[#dbf4de] rounded-tr-[20px] rounded-tl-[20px]'>
                                             <div className='my-[20px]'>
-                                                <FaWallet color='#5cbf54' size={22} />
+                                                <img src={WithdrawIcon} alt="Withdrawn Icon" />
                                                 <p className='text-[#5cbf54] font-bold text-[16px] mt-[5px]'>Withdrawn</p>
                                                 <p className='text-[#5cbf54] font-bold text-[18px]'>{utils.renderBalance(withdrawnCardData.amountWithdrawn, isBalanceHidden)}</p>
                                             </div>
@@ -433,7 +437,7 @@ const Home = ({ darkMode, setDarkMode }) => {
                                                     <div className='flex h-fit mx-[15px]'>
                                                         <div className='w-[4px] bg-[#b9cbd3] rounded-[4px] mx-[10px] my-[4px]'></div>
                                                         <div className=''>
-                                                            <FaWallet color='grey' />
+                                                            <img src={PotentialCommisionIcon} alt="Potential Commision Icon" />
                                                             <p className='text-black/[0.6] font-bold text-[12px]'>Potential</p>
                                                             <p className='text-black/[0.6] font-bold text-[12px]'>Commisions</p>
                                                             <p className='text-black/[0.7] font-extrabold text-[16px]'>{utils.renderBalance(withdrawnCardData.potentialCommision, isBalanceHidden)}</p>
@@ -652,7 +656,7 @@ const Home = ({ darkMode, setDarkMode }) => {
             </div>
             {/* Row 2 */}
             <div className='grid grid-cols-1'>
-                <div className='flex flex-col md:flex-row overflow-x-auto scroll-container'>
+                <div className='flex flex-col md:flex-row overflow-x-auto scroll-container2'>
                     <div className={`flex-none md:w-[25%] rounded-[20px] ${darkMode ? 'bg-dark-gray' : 'bg-white'} px-[20px] py-[20px] mr-[15px] my-[15px]`}>
                         <p className='text-black font-bold text-[20px]'>{currentRow2Data.card1.title}</p>
                         <div className='flex justify-center items-center mt-[15px]'>
@@ -920,15 +924,15 @@ const Row3Card = ({ title, lightColor, mainColor, darkMode, colorCode, selectedR
                     </div>
                 </div>
                 <div>
-                    {selectedRow3Tab == 'Daily' ? <div className='relative mt-[15px] w-[77%]'>
-                        <div className='h-[140px]  bg-white rounded-[15px] shadow-lg m-[10px] p-[20px]'>
+                    {selectedRow3Tab === 'Daily' ? <div className='relative mt-[15px] min-w-[77%] mr-[25px]'>
+                        <div className='h-[140px] bg-white rounded-[15px] shadow-lg m-[10px] p-[20px]'>
                             <div className='flex justify-between'>
                                 <div className='rounded-full shadow-lg p-[6px]'><FaUser /></div>
                                 <p>1/8</p>
                             </div>
                             <div className='mt-[20px]'>
-                                <p>Necmettin Murat TENIL</p>
-                                <p>Computer Engineering</p>
+                                <p className='text-[13px] text-black/[0.7] font-bold'>Necmettin Murat TENIL</p>
+                                <p className='text-[12px] text-black/[0.7] font-bold'>Computer Engineering</p>
                             </div>
                         </div>
                         <div className={`absolute left-[0px] top-1/2 ${mainColor} rounded-[4px] flex items-center justify-center p-[3px]`}><FaChevronLeft color='white' size={16} /></div>
