@@ -242,6 +242,9 @@ const Home = ({ darkMode, setDarkMode }) => {
     const [activeStudentsTab, setActiveStudentsTab] = useState('offerSent');
     const [selectedRow3Tab, setSelectedRow3Tab] = useState('Daily');
 
+    // References . . .
+    const row1ScrollContainerRef = useRef(null);
+
     // State variable handlers . . .
     const toggleFilterVisibility = () => {
         setFilterVisibility(!isFilterVisible);
@@ -311,6 +314,31 @@ const Home = ({ darkMode, setDarkMode }) => {
     const currentStudentCardData = getStudentCardDataForSelectedInterval();
     const currentRow2Data = getRow2DataForSelectedTab();
 
+    // Other functions . . .
+    const scrollToNextItem = (direction) => {
+        const scrollContainer = row1ScrollContainerRef.current;
+
+        if (scrollContainer) {
+            // Calculate the index of the currently visible child
+            let visibleChildIndex = Array.from(scrollContainer.children).findIndex(
+                (child) => child.getBoundingClientRect().left >= 0 && child.getBoundingClientRect().right <= window.innerWidth
+            );
+
+            // Calculate the index of the next or previous child
+            const targetIndex = direction === 'left' ? (visibleChildIndex - 1 <= 0) ? 0 : visibleChildIndex - 1 : visibleChildIndex + 1;
+
+            // Scroll to the next or previous child based on the index
+            const targetChild = scrollContainer.children[targetIndex];
+            if (targetChild) {
+                targetChild.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest',
+                    inline: 'start',
+                });
+            }
+        }
+    };
+
     return (
         <div className={`min-h-screen ${darkMode ? 'bg-black' : 'bg-[#f6f6f6]'} w-full pl-[15px]`}>
             {/* Header */}
@@ -369,206 +397,222 @@ const Home = ({ darkMode, setDarkMode }) => {
                     )}
                     {/* Row 1 */}
                     <div className='grid grid-cols-1'>
-                        <div className='flex overflow-x-auto scroll-container pb-[10px]'>
-                            <div className='flex-none'>
-                                <div className={`rounded-[20px] ${darkMode ? 'bg-dark-gray' : 'bg-white'} md:min-w-[400px] h-[100%]`}>
-                                    <div className='flex justify-between p-[25px] bg-[#dbf4de] rounded-tr-[20px] rounded-tl-[20px]'>
-                                        <div className='my-[20px]'>
-                                            <FaWallet color='#5cbf54' size={22} />
-                                            <p className='text-[#5cbf54] font-bold text-[16px] mt-[5px]'>Withdrawn</p>
-                                            <p className='text-[#5cbf54] font-bold text-[18px]'>{utils.renderBalance(withdrawnCardData.amountWithdrawn, isBalanceHidden)}</p>
-                                        </div>
-                                        <div className='flex'>
-                                            <div className='flex items-center'>
-                                                <div>
-                                                    <FaBolt color='#5cbf54' />
-                                                    <p className='text-[#5cbf54] font-normal text-[14px]'>{withdrawnCardData.percentageIncrease}% increase</p>
-                                                    <p className='text-grey/[0.7] font-normal text-[14px]'>from last week</p>
-                                                </div>
-
-                                            </div>
-                                            <div onClick={toggleBalanceVisibility} className='cursor-pointer'>
-                                                {isBalanceHidden ? <FaEye color='grey' size={22} /> : <FaEyeSlash color='grey' size={22} />}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='pl-[25px] pb-[25px] pt-[10px] pr-[25px]'>
-                                        <p className='text-[#24245c] text-[18px] leading-[25px] font-bold'>Commision</p>
-                                        <div className='flex pt-[25px] justify-between'>
-                                            <div className='items-center space-y-4 md:space-y-8 lg:space-y-12'>
-                                                <CircularProgressBar targetValue={withdrawnCardData.percentageCommision} />
-                                                <p className='text-black/[0.7] text-[14px] leading-[25px] font-normal mt-4 cursor-pointer'>See all Details</p>
+                        <div className='relative'>
+                            <div ref={row1ScrollContainerRef} className='flex md:flex-row flex-col overflow-x-auto scroll-container pb-[10px] gap-[15px]'>
+                                <div className='flex-none'>
+                                    <div className={`rounded-[20px] ${darkMode ? 'bg-dark-gray' : 'bg-white'} md:min-w-[400px] h-[100%]`}>
+                                        <div className='flex justify-between p-[25px] bg-[#dbf4de] rounded-tr-[20px] rounded-tl-[20px]'>
+                                            <div className='my-[20px]'>
+                                                <FaWallet color='#5cbf54' size={22} />
+                                                <p className='text-[#5cbf54] font-bold text-[16px] mt-[5px]'>Withdrawn</p>
+                                                <p className='text-[#5cbf54] font-bold text-[18px]'>{utils.renderBalance(withdrawnCardData.amountWithdrawn, isBalanceHidden)}</p>
                                             </div>
                                             <div className='flex'>
-                                                <div className='flex h-fit mx-[15px]'>
-                                                    <div className='w-[4px] bg-[#b9cbd3] rounded-[4px] mx-[10px] my-[4px]'></div>
-                                                    <div className=''>
-                                                        <FaWallet color='grey' />
-                                                        <p className='text-black/[0.6] font-bold text-[12px]'>Potential</p>
-                                                        <p className='text-black/[0.6] font-bold text-[12px]'>Commisions</p>
-                                                        <p className='text-black/[0.7] font-extrabold text-[16px]'>{utils.renderBalance(withdrawnCardData.potentialCommision, isBalanceHidden)}</p>
+                                                <div className='flex items-center'>
+                                                    <div>
+                                                        <FaBolt color='#5cbf54' />
+                                                        <p className='text-[#5cbf54] font-normal text-[14px]'>{withdrawnCardData.percentageIncrease}% increase</p>
+                                                        <p className='text-grey/[0.7] font-normal text-[14px]'>from last week</p>
                                                     </div>
+
                                                 </div>
-                                                <div>
+                                                <div onClick={toggleBalanceVisibility} className='cursor-pointer'>
+                                                    {isBalanceHidden ? <FaEye color='grey' size={22} /> : <FaEyeSlash color='grey' size={22} />}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className='pl-[25px] pb-[25px] pt-[10px] pr-[25px]'>
+                                            <p className='text-[#24245c] text-[18px] leading-[25px] font-bold'>Commision</p>
+                                            <div className='flex pt-[25px] justify-between'>
+                                                <div className='items-center space-y-4 md:space-y-8 lg:space-y-12'>
+                                                    <CircularProgressBar targetValue={withdrawnCardData.percentageCommision} />
+                                                    <p className='text-black/[0.7] text-[14px] leading-[25px] font-normal mt-4 cursor-pointer'>See all Details</p>
+                                                </div>
+                                                <div className='flex'>
                                                     <div className='flex h-fit mx-[15px]'>
-                                                        <div className='w-[4px] bg-[#56bce4] rounded-[4px] mx-[10px] my-[4px]'></div>
+                                                        <div className='w-[4px] bg-[#b9cbd3] rounded-[4px] mx-[10px] my-[4px]'></div>
                                                         <div className=''>
-                                                            <FaDollarSign color='#56bce4' />
-                                                            <p className='text-black/[0.6] font-bold text-[12px]'>Earned</p>
+                                                            <FaWallet color='grey' />
+                                                            <p className='text-black/[0.6] font-bold text-[12px]'>Potential</p>
                                                             <p className='text-black/[0.6] font-bold text-[12px]'>Commisions</p>
-                                                            <p className='text-[#56bce4] font-extrabold text-[16px]'>{utils.renderBalance(withdrawnCardData.earnedCommision, isBalanceHidden)}</p>
+                                                            <p className='text-black/[0.7] font-extrabold text-[16px]'>{utils.renderBalance(withdrawnCardData.potentialCommision, isBalanceHidden)}</p>
                                                         </div>
                                                     </div>
-                                                    <div className='flex h-fit mx-[15px] mt-[35px]'>
-                                                        <div className='w-[4px] bg-[#ff5757] rounded-[4px] mx-[10px] my-[4px]'></div>
+                                                    <div>
+                                                        <div className='flex h-fit mx-[15px]'>
+                                                            <div className='w-[4px] bg-[#56bce4] rounded-[4px] mx-[10px] my-[4px]'></div>
+                                                            <div className=''>
+                                                                <FaDollarSign color='#56bce4' />
+                                                                <p className='text-black/[0.6] font-bold text-[12px]'>Earned</p>
+                                                                <p className='text-black/[0.6] font-bold text-[12px]'>Commisions</p>
+                                                                <p className='text-[#56bce4] font-extrabold text-[16px]'>{utils.renderBalance(withdrawnCardData.earnedCommision, isBalanceHidden)}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div className='flex h-fit mx-[15px] mt-[35px]'>
+                                                            <div className='w-[4px] bg-[#ff5757] rounded-[4px] mx-[10px] my-[4px]'></div>
+                                                            <div className=''>
+                                                                <FaExclamation color='red' />
+                                                                <p className='text-black/[0.6] font-bold text-[12px]'>Refund</p>
+                                                                <p className='text-[#ff5757] font-extrabold text-[16px]'>{utils.renderBalance(withdrawnCardData.refund, isBalanceHidden)}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='flex-none'>
+                                    <div className={`rounded-[20px] ${darkMode ? 'bg-dark-gray' : 'bg-white'} px-[20px] py-[25px] min-w-[400px] h-[100%]`}>
+                                        <div className='flex justify-between'>
+                                            <div className='space-y-4 md:space-y-12'>
+                                                <p className='text-black font-bold text-[20px]'>Student</p>
+                                                <div>
+                                                    <div className='flex justify-center items-center mt-[25px]'>
+                                                        <h1 className='text-black/[0.5] text-[12px] font-bold'>{studentCardSelectedInterval} Average</h1>
+                                                    </div>
+                                                    <div className='flex justify-center items-center mt-[10px]'>
+                                                        <h2 className='text-black text-[22px] font-bold tracking-widest'>{currentStudentCardData.average}</h2>
+                                                    </div>
+                                                    <div className='flex justify-center items-center gap-[10px] h-fit mt-[10px]'>
+                                                        <p
+                                                            className={`text-black/[0.5] text-[10px] font-bold tracking-widest ${studentCardSelectedInterval === 'Daily' ? 'text-blue-500' : ''
+                                                                } cursor-pointer`}
+                                                            onClick={() => handleStudentCardIntervalChange('Daily')}
+                                                        >
+                                                            Daily
+                                                        </p>
+                                                        <div className='w-[1.5px] h-[12px] bg-[#dadada] rounded-[1px]'></div>
+                                                        <p
+                                                            className={`text-black/[0.5] text-[10px] font-bold tracking-widest ${studentCardSelectedInterval === 'Weekly' ? 'text-blue-500' : ''
+                                                                } cursor-pointer`}
+                                                            onClick={() => handleStudentCardIntervalChange('Weekly')}
+                                                        >
+                                                            Weekly
+                                                        </p>
+                                                        <div className='w-[1.5px] h-[12px] bg-[#dadada] rounded-[1px]'></div>
+                                                        <p
+                                                            className={`text-black/[0.5] text-[10px] font-bold tracking-widest ${studentCardSelectedInterval === 'Monthly' ? 'text-blue-500' : ''
+                                                                } cursor-pointer`}
+                                                            onClick={() => handleStudentCardIntervalChange('Monthly')}
+                                                        >
+                                                            Monthly
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <HorizontalBarChart students={currentStudentCardData.students} applications={currentStudentCardData.applications} />
+                                                <div className='flex mt-[15px]'>
+                                                    <div className='flex h-fit mx-[15px]'>
+                                                        <div className='w-[4px] bg-[#5cbf54] rounded-[4px] mx-[10px] my-[4px]'></div>
                                                         <div className=''>
-                                                            <FaExclamation color='red' />
-                                                            <p className='text-black/[0.6] font-bold text-[12px]'>Refund</p>
-                                                            <p className='text-[#ff5757] font-extrabold text-[16px]'>{utils.renderBalance(withdrawnCardData.refund, isBalanceHidden)}</p>
+                                                            <p className='text-black/[0.6] font-bold text-[10px]'>Students</p>
+                                                            <p className='text-black/[0.7] font-extrabold text-[16px]'>{utils.addCommasToNumber(currentStudentCardData.students)}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className='flex h-fit mx-[15px]'>
+                                                        <div className='w-[4px] bg-[#b9cbd3] rounded-[4px] mx-[10px] my-[4px]'></div>
+                                                        <div className=''>
+                                                            <p className='text-black/[0.6] font-bold text-[10px]'>Applications</p>
+                                                            <p className='text-black/[0.7] font-extrabold text-[16px]'>{utils.addCommasToNumber(currentStudentCardData.applications)}</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='flex-none'>
-                                <div className={`rounded-[20px] ${darkMode ? 'bg-dark-gray' : 'bg-white'} mx-[15px] px-[20px] py-[25px] min-w-[400px] h-[100%]`}>
-                                    <div className='flex justify-between'>
-                                        <div className='space-y-4 md:space-y-12'>
-                                            <p className='text-black font-bold text-[20px]'>Student</p>
-                                            <div>
-                                                <div className='flex justify-center items-center mt-[25px]'>
-                                                    <h1 className='text-black/[0.5] text-[12px] font-bold'>{studentCardSelectedInterval} Average</h1>
-                                                </div>
-                                                <div className='flex justify-center items-center mt-[10px]'>
-                                                    <h2 className='text-black text-[22px] font-bold tracking-widest'>{currentStudentCardData.average}</h2>
-                                                </div>
-                                                <div className='flex justify-center items-center gap-[10px] h-fit mt-[10px]'>
-                                                    <p
-                                                        className={`text-black/[0.5] text-[10px] font-bold tracking-widest ${studentCardSelectedInterval === 'Daily' ? 'text-blue-500' : ''
-                                                            } cursor-pointer`}
-                                                        onClick={() => handleStudentCardIntervalChange('Daily')}
-                                                    >
-                                                        Daily
-                                                    </p>
-                                                    <div className='w-[1.5px] h-[12px] bg-[#dadada] rounded-[1px]'></div>
-                                                    <p
-                                                        className={`text-black/[0.5] text-[10px] font-bold tracking-widest ${studentCardSelectedInterval === 'Weekly' ? 'text-blue-500' : ''
-                                                            } cursor-pointer`}
-                                                        onClick={() => handleStudentCardIntervalChange('Weekly')}
-                                                    >
-                                                        Weekly
-                                                    </p>
-                                                    <div className='w-[1.5px] h-[12px] bg-[#dadada] rounded-[1px]'></div>
-                                                    <p
-                                                        className={`text-black/[0.5] text-[10px] font-bold tracking-widest ${studentCardSelectedInterval === 'Monthly' ? 'text-blue-500' : ''
-                                                            } cursor-pointer`}
-                                                        onClick={() => handleStudentCardIntervalChange('Monthly')}
-                                                    >
-                                                        Monthly
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <HorizontalBarChart students={currentStudentCardData.students} applications={currentStudentCardData.applications} />
-                                            <div className='flex mt-[15px]'>
-                                                <div className='flex h-fit mx-[15px]'>
-                                                    <div className='w-[4px] bg-[#5cbf54] rounded-[4px] mx-[10px] my-[4px]'></div>
-                                                    <div className=''>
-                                                        <p className='text-black/[0.6] font-bold text-[10px]'>Students</p>
-                                                        <p className='text-black/[0.7] font-extrabold text-[16px]'>{utils.addCommasToNumber(currentStudentCardData.students)}</p>
+                                            <div className='grid grid-rows-3 gap-[20px]'>
+                                                <div className='bg-white shadow-lg rounded-[8px] mx-[20px]'>
+                                                    <div className='bg-[#dbedf4] rounded-tr-[8px] rounded-tl-[8px] flex items-center justify-center gap-[6px] py-[8px] min-w-[150px]'>
+                                                        <FaEnvelope color='#51bae7' />
+                                                        <p className='text-[#51bae7] font-bold text-[14px]'>Offer Sent</p>
+                                                    </div>
+                                                    <div className='flex items-center justify-center'>
+                                                        <p className='text-[#51bae7] font-bold text-[18px] leading-[10px] mt-[25px]'>{currentStudentCardData.offerSent}</p>
+                                                    </div>
+                                                    <div className='flex items-center justify-center'>
+                                                        <p className='text-black/[0.7] font-bold text-[14px] leading-[40px]'>See all Details</p>
                                                     </div>
                                                 </div>
-                                                <div className='flex h-fit mx-[15px]'>
-                                                    <div className='w-[4px] bg-[#b9cbd3] rounded-[4px] mx-[10px] my-[4px]'></div>
-                                                    <div className=''>
-                                                        <p className='text-black/[0.6] font-bold text-[10px]'>Applications</p>
-                                                        <p className='text-black/[0.7] font-extrabold text-[16px]'>{utils.addCommasToNumber(currentStudentCardData.applications)}</p>
+                                                <div className='bg-white shadow-lg rounded-[8px] mx-[20px]'>
+                                                    <div className='bg-[#feedcd] rounded-tr-[8px] rounded-tl-[8px] flex items-center justify-center gap-[6px] py-[8px] min-w-[150px]'>
+                                                        <FaEnvelope color='#e39735' />
+                                                        <p className='text-[#e39735] font-bold text-[14px]'>Accepted</p>
+                                                    </div>
+                                                    <div className='flex items-center justify-center'>
+                                                        <p className='text-[#e39735] font-bold text-[18px] leading-[10px] mt-[25px]'>{currentStudentCardData.accepted}</p>
+                                                    </div>
+                                                    <div className='flex items-center justify-center'>
+                                                        <p className='text-black/[0.7] font-bold text-[14px] leading-[40px]'>See all Details</p>
+                                                    </div>
+                                                </div>
+                                                <div className='bg-white shadow-lg rounded-[8px] mx-[20px]'>
+                                                    <div className='bg-[#dbf4de] rounded-tr-[8px] rounded-tl-[8px] flex items-center justify-center gap-[6px] py-[8px] min-w-[150px]'>
+                                                        <FaEnvelope color='#65c35e' />
+                                                        <p className='text-[#65c35e] font-bold text-[14px]'>Registered</p>
+                                                    </div>
+                                                    <div className='flex items-center justify-center'>
+                                                        <p className='text-[#65c35e] font-bold text-[18px] leading-[10px] mt-[25px]'>{currentStudentCardData.registered}</p>
+                                                    </div>
+                                                    <div className='flex items-center justify-center'>
+                                                        <p className='text-black/[0.7] font-bold text-[14px] leading-[40px]'>See all Details</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className='grid grid-rows-3 gap-[20px]'>
-                                            <div className='bg-white shadow-lg rounded-[8px] mx-[20px]'>
-                                                <div className='bg-[#dbedf4] rounded-tr-[8px] rounded-tl-[8px] flex items-center justify-center gap-[6px] py-[8px] min-w-[150px]'>
-                                                    <FaEnvelope color='#51bae7' />
-                                                    <p className='text-[#51bae7] font-bold text-[14px]'>Offer Sent</p>
-                                                </div>
-                                                <div className='flex items-center justify-center'>
-                                                    <p className='text-[#51bae7] font-bold text-[18px] leading-[10px] mt-[25px]'>{currentStudentCardData.offerSent}</p>
-                                                </div>
-                                                <div className='flex items-center justify-center'>
-                                                    <p className='text-black/[0.7] font-bold text-[14px] leading-[40px]'>See all Details</p>
+                                    </div>
+                                </div>
+                                <div className='flex-none'>
+                                    <div className={`md:w-[350px] rounded-[20px] ${darkMode ? 'bg-dark-gray' : 'bg-white'} px-[20px] py-[20px] mr-[15px] h-[100%]`}>
+                                        <p className='text-black font-bold text-[20px]'>Applications</p>
+                                        <div className='flex justify-center items-center mt-[60px]'>
+                                            <h2 className='text-black text-[24px] font-bold'>{applicationsData.amount}</h2>
+                                        </div>
+                                        <div className='flex justify-center items-center pl-[20%]'>
+                                            <PieChart
+                                                series={[
+                                                    {
+                                                        data: [
+                                                            { id: 0, value: 210, color: '#56bce4' },
+                                                            { id: 1, value: 135, color: '#cadcff' },
+                                                        ],
+                                                    },
+                                                ]}
+                                                width={300}
+                                                height={200}
+                                            />
+                                        </div>
+                                        <div className='flex justify-center mb-[20px]'>
+                                            <div className='flex h-fit mx-[15px]'>
+                                                <div className='w-[4px] bg-[#56bce4] rounded-[4px] mx-[10px] my-[4px]'></div>
+                                                <div className=''>
+                                                    <p className='text-black/[0.6] font-bold text-[10px]'>Universal</p>
+                                                    <p className='text-black/[0.7] font-extrabold text-[16px]'>{applicationsData.universal}</p>
                                                 </div>
                                             </div>
-                                            <div className='bg-white shadow-lg rounded-[8px] mx-[20px]'>
-                                                <div className='bg-[#feedcd] rounded-tr-[8px] rounded-tl-[8px] flex items-center justify-center gap-[6px] py-[8px] min-w-[150px]'>
-                                                    <FaEnvelope color='#e39735' />
-                                                    <p className='text-[#e39735] font-bold text-[14px]'>Accepted</p>
-                                                </div>
-                                                <div className='flex items-center justify-center'>
-                                                    <p className='text-[#e39735] font-bold text-[18px] leading-[10px] mt-[25px]'>{currentStudentCardData.accepted}</p>
-                                                </div>
-                                                <div className='flex items-center justify-center'>
-                                                    <p className='text-black/[0.7] font-bold text-[14px] leading-[40px]'>See all Details</p>
-                                                </div>
-                                            </div>
-                                            <div className='bg-white shadow-lg rounded-[8px] mx-[20px]'>
-                                                <div className='bg-[#dbf4de] rounded-tr-[8px] rounded-tl-[8px] flex items-center justify-center gap-[6px] py-[8px] min-w-[150px]'>
-                                                    <FaEnvelope color='#65c35e' />
-                                                    <p className='text-[#65c35e] font-bold text-[14px]'>Registered</p>
-                                                </div>
-                                                <div className='flex items-center justify-center'>
-                                                    <p className='text-[#65c35e] font-bold text-[18px] leading-[10px] mt-[25px]'>{currentStudentCardData.registered}</p>
-                                                </div>
-                                                <div className='flex items-center justify-center'>
-                                                    <p className='text-black/[0.7] font-bold text-[14px] leading-[40px]'>See all Details</p>
+                                            <div className='flex h-fit mx-[15px]'>
+                                                <div className='w-[4px] bg-[#cadcff] rounded-[4px] mx-[10px] my-[4px]'></div>
+                                                <div className=''>
+                                                    <p className='text-black/[0.6] font-bold text-[10px]'>Global</p>
+                                                    <p className='text-black/[0.7] font-extrabold text-[16px]'>{applicationsData.global}</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className='flex-none'>
-                                <div className={`md:w-[350px] rounded-[20px] ${darkMode ? 'bg-dark-gray' : 'bg-white'} px-[20px] py-[20px] mr-[15px] h-[100%]`}>
-                                    <p className='text-black font-bold text-[20px]'>Applications</p>
-                                    <div className='flex justify-center items-center mt-[60px]'>
-                                        <h2 className='text-black text-[24px] font-bold'>{applicationsData.amount}</h2>
+                            <div className='hidden md:block'>
+                                <button className="absolute top-1/2 left-[0px]" onClick={() => scrollToNextItem('left')}>
+                                    <div className='rounded-full p-[12px] bg-black/[0.2]'>
+                                        <FaChevronLeft color='white' size={20} />
                                     </div>
-                                    <div className='flex justify-center items-center pl-[20%]'>
-                                        <PieChart
-                                            series={[
-                                                {
-                                                    data: [
-                                                        { id: 0, value: 210, color: '#56bce4' },
-                                                        { id: 1, value: 135, color: '#cadcff' },
-                                                    ],
-                                                },
-                                            ]}
-                                            width={300}
-                                            height={200}
-                                        />
+                                </button>
+                                <button className="absolute top-1/2 right-[0px]" onClick={() => scrollToNextItem('right')}>
+                                    <div className='rounded-full p-[12px] bg-black/[0.2]'>
+                                        <FaChevronRight color='white' size={20} />
                                     </div>
-                                    <div className='flex justify-center mb-[20px]'>
-                                        <div className='flex h-fit mx-[15px]'>
-                                            <div className='w-[4px] bg-[#56bce4] rounded-[4px] mx-[10px] my-[4px]'></div>
-                                            <div className=''>
-                                                <p className='text-black/[0.6] font-bold text-[10px]'>Universal</p>
-                                                <p className='text-black/[0.7] font-extrabold text-[16px]'>{applicationsData.universal}</p>
-                                            </div>
-                                        </div>
-                                        <div className='flex h-fit mx-[15px]'>
-                                            <div className='w-[4px] bg-[#cadcff] rounded-[4px] mx-[10px] my-[4px]'></div>
-                                            <div className=''>
-                                                <p className='text-black/[0.6] font-bold text-[10px]'>Global</p>
-                                                <p className='text-black/[0.7] font-extrabold text-[16px]'>{applicationsData.global}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </button>
                             </div>
+
                         </div>
+
                     </div>
                 </div>
                 {/* Floating Icons */}
@@ -756,7 +800,7 @@ const Home = ({ darkMode, setDarkMode }) => {
                 </div>
             </div>
             {/* Row 3 */}
-            <Row3 />
+            <Row3 selectedRow3Tab={selectedRow3Tab} />
         </div>
     )
 };
@@ -828,7 +872,7 @@ const CircularProgressBar = ({ targetValue }) => {
         </div>
     );
 };
-const Row3Card = ({ title, lightColor, mainColor, darkMode, colorCode }) => {
+const Row3Card = ({ title, lightColor, mainColor, darkMode, colorCode, selectedRow3Tab }) => {
 
     const data = [3, 1, 2, 1, 1, 3, 5];
     const date = [23, 24, 25, 26, 27, 28, 29];
@@ -875,8 +919,7 @@ const Row3Card = ({ title, lightColor, mainColor, darkMode, colorCode }) => {
                     </div>
                 </div>
                 <div>
-                    {/* {bars} */}
-                    <div className='relative mt-[15px] w-[77%]'>
+                    {selectedRow3Tab == 'Daily' ? <div className='relative mt-[15px] w-[77%]'>
                         <div className='h-[140px]  bg-white rounded-[15px] shadow-lg m-[10px] p-[20px]'>
                             <div className='flex justify-between'>
                                 <div className='rounded-full shadow-lg p-[6px]'><FaUser /></div>
@@ -889,10 +932,12 @@ const Row3Card = ({ title, lightColor, mainColor, darkMode, colorCode }) => {
                         </div>
                         <div className={`absolute left-[0px] top-1/2 ${mainColor} rounded-[4px] flex items-center justify-center p-[3px]`}><FaChevronLeft color='white' size={16} /></div>
                         <div className={`absolute right-[0px] top-1/2 ${mainColor} rounded-[4px] flex items-center justify-center p-[3px]`}><FaChevronRight color='white' size={16} /></div>
-                    </div>
-                    <div className='flex items-end justify-center gap-[15px]'>
-                        {/* {dateRow} */}
-                    </div>
+                    </div> : <div> <div className='flex items-end justify-center gap-[15px]'>{bars}</div>
+                        <div className='flex items-end justify-center gap-[15px]'>
+                            {dateRow}
+                        </div>
+                    </div>}
+
                 </div>
             </div>
         </div>
@@ -970,7 +1015,7 @@ const Dropdown = () => {
         </div>
     );
 };
-const Row3 = () => {
+const Row3 = ({ selectedRow3Tab }) => {
     const DummyData = [
         {
             title: 'Weekly Application',
@@ -1035,7 +1080,6 @@ const Row3 = () => {
 
     const handleDotClick = (index) => {
         setActiveDot(index);
-        // Get the corresponding card element and scroll it into view
         const cardElement = scrollContainerRef.current.children[index];
         cardElement.scrollIntoView({
             behavior: 'smooth',
@@ -1055,6 +1099,7 @@ const Row3 = () => {
                             mainColor={data.mainColor}
                             darkMode={data.darkMode}
                             colorCode={data.colorCode}
+                            selectedRow3Tab={selectedRow3Tab}
                         />
                     </div>
                 ))}

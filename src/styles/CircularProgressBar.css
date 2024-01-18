@@ -34,7 +34,7 @@
 
 /* Show scrollbar when content overflows horizontally */
 .scroll-container:hover {
-  overflow-x: auto;
+  overflow-x: hidden;
 }
 
 /* Style for WebKit (Chrome, Safari) browsers */
