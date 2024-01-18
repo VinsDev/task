@@ -4,6 +4,7 @@ import { PieChart } from '@mui/x-charts';
 import '../styles/CircularProgressBar.css';
 import * as utils from '../utils/utils';
 import ThemeSwitcher from '../components/ThemeSwitcher';
+import SuperAdminIcon from '../assets/icons/superadmin.svg'
 
 const Home = ({ darkMode, setDarkMode }) => {
     // Data . . .
@@ -813,8 +814,8 @@ const Header = ({ darkMode, setDarkMode }) => {
                 <div className='mb-[10px] md:mb-0'>
                     <p className='text-[#23255c] text-[16px] leading-[25px] font-normal'>Welcome</p>
                     <p className='text-[#24245c] text-[20px] leading-[25px] font-normal'>Necmettin Murat TENIL</p>
-                    <div className='flex items-center justify-center gap-[8px] border-t-[2px] w-fit mt-[8px] pt-[2px]'>
-                        <FaStarAndCrescent color='#5cbf54' />
+                    <div className='flex items-center justify-center gap-[8px] border-t-[2px] w-fit mt-[8px] pt-[8px]'>
+                        <img src={SuperAdminIcon} alt="Super Admin Icon" />
                         <p className='text-[#5cbf54] font-bold text-[14px]'>Superadmin</p>
                     </div>
                 </div>
@@ -886,7 +887,7 @@ const Row3Card = ({ title, lightColor, mainColor, darkMode, colorCode, selectedR
                 justifyContent: 'center',
                 alignItems: 'center',
                 height: `${value * barHeightMultiplier}px`,
-                backgroundColor: mainColor,
+                backgroundColor: colorCode,
                 width: '20px',
                 borderTopLeftRadius: '10px',
                 borderTopRightRadius: '10px',
@@ -910,7 +911,7 @@ const Row3Card = ({ title, lightColor, mainColor, darkMode, colorCode, selectedR
             <div className={`rounded-[20px] ${darkMode ? 'bg-dark-gray' : 'bg-white'} p-[25px] mr-[5px] min-w-screen`}>
                 <div className='flex items-top justify-between'>
                     <div className='px-[8px]'>
-                        <p className=''>{title}</p>
+                        <p className=''>{selectedRow3Tab} {title}</p>
                         <span className='flex gap-[6px] items-center pt-[10px]'><h1 className='font-bold text-[22px]'>16</h1><p>students</p></span>
                         <p className='text-[14px] text-black/[0.7]'>Total</p>
                     </div>
@@ -1018,56 +1019,56 @@ const Dropdown = () => {
 const Row3 = ({ selectedRow3Tab }) => {
     const DummyData = [
         {
-            title: 'Weekly Application',
+            title: 'Application',
             lightColor: '#dbedf4',
             mainColor: 'bg-gstats1',
             darkMode: false,
             colorCode: '#7c7e9f',
         },
         {
-            title: 'Weekly Offer Sent',
+            title: 'Offer Sent',
             lightColor: '#dbedf4',
             mainColor: 'bg-gstats2',
             darkMode: false,
             colorCode: '#6fc5eb',
         },
         {
-            title: 'Weekly Acceptance',
+            title: 'Acceptance',
             lightColor: '#dbf4de',
             mainColor: 'bg-gstats3',
             darkMode: false,
             colorCode: '#7bcb75',
         },
         {
-            title: 'Weekly Application',
+            title: 'Application',
             lightColor: '#dbedf4',
             mainColor: 'bg-gstats1',
             darkMode: false,
             colorCode: '#7c7e9f',
         },
         {
-            title: 'Weekly Offer Sent',
+            title: 'Offer Sent',
             lightColor: '#dbedf4',
             mainColor: 'bg-gstats2',
             darkMode: false,
             colorCode: '#6fc5eb',
         },
         {
-            title: 'Weekly Acceptance',
+            title: 'Acceptance',
             lightColor: '#dbf4de',
             mainColor: 'bg-gstats3',
             darkMode: false,
             colorCode: '#7bcb75',
         },
         {
-            title: 'Weekly Offer Sent',
+            title: 'Offer Sent',
             lightColor: '#dbedf4',
             mainColor: 'bg-gstats2',
             darkMode: false,
             colorCode: '#6fc5eb',
         },
         {
-            title: 'Weekly Acceptance',
+            title: 'Acceptance',
             lightColor: '#dbf4de',
             mainColor: 'bg-gstats3',
             darkMode: false,
