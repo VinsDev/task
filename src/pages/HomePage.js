@@ -1,16 +1,18 @@
+'use client'
 import React, { useEffect, useRef, useState } from 'react';
-import { FaBell, FaBolt, FaCalendar, FaChevronDown, FaChevronLeft, FaChevronRight, FaDollarSign, FaEnvelope, FaExclamation, FaEye, FaEyeSlash, FaFilter, FaGlobe, FaImage, FaPaste, FaStarAndCrescent, FaUser, FaVolumeUp, FaWallet } from 'react-icons/fa';
 import { PieChart } from '@mui/x-charts';
 import '../styles/CircularProgressBar.css';
 import * as utils from '../utils/utils';
 import ThemeSwitcher from '../components/ThemeSwitcher';
-import SuperAdminIcon from '../assets/icons/superadmin.svg'
-import WithdrawIcon from '../assets/icons/withdrawn.svg'
-import PotentialCommisionIcon from '../assets/icons/potential-commision.svg'
-import EarnedCommisionIcon from '../assets/icons/earned-commision.svg'
-import RefundIcon from '../assets/icons/refund.svg'
+import Image from 'next/image';
+import SuperAdminIcon from '../../public/icons/superadmin.svg'
+import WithdrawIcon from '../../public/icons/withdrawn.svg'
+import PotentialCommisionIcon from '../../public/icons/potential-commision.svg'
+import EarnedCommisionIcon from '../../public/icons/earned-commision.svg'
+import RefundIcon from '../../public/icons/refund.svg'
+import { FaBell, FaBolt, FaChevronDown, FaChevronLeft, FaChevronRight, FaDollarSign, FaEnvelope, FaExclamation, FaEye, FaEyeSlash, FaFilter, FaGlobe, FaImage, FaUser, FaVolumeUp } from 'react-icons/fa';
 
-const Home = ({ darkMode, setDarkMode }) => {
+const HomePage = ({ darkMode, setDarkMode }) => {
     // Data . . .
     const withdrawnCardData = {
         amountWithdrawn: "22,748",
@@ -408,7 +410,7 @@ const Home = ({ darkMode, setDarkMode }) => {
                                     <div className={`rounded-[20px] ${darkMode ? 'bg-dark-gray' : 'bg-white'} md:min-w-[400px] h-[100%]`}>
                                         <div className='flex justify-between p-[25px] bg-[#dbf4de] rounded-tr-[20px] rounded-tl-[20px]'>
                                             <div className='my-[20px]'>
-                                                <img src={WithdrawIcon} alt="Withdrawn Icon" />
+                                                <Image src={WithdrawIcon} alt="Withdrawn Icon" />
                                                 <p className='text-[#5cbf54] font-bold text-[16px] mt-[5px]'>Withdrawn</p>
                                                 <p className='text-[#5cbf54] font-bold text-[18px]'>{utils.renderBalance(withdrawnCardData.amountWithdrawn, isBalanceHidden)}</p>
                                             </div>
@@ -437,7 +439,7 @@ const Home = ({ darkMode, setDarkMode }) => {
                                                     <div className='flex h-fit mx-[15px]'>
                                                         <div className='w-[4px] bg-[#b9cbd3] rounded-[4px] mx-[10px] my-[4px]'></div>
                                                         <div className=''>
-                                                            <img src={PotentialCommisionIcon} alt="Potential Commision Icon" />
+                                                            <Image src={PotentialCommisionIcon} alt="Potential Commision Icon" />
                                                             <p className='text-black/[0.6] font-bold text-[12px]'>Potential</p>
                                                             <p className='text-black/[0.6] font-bold text-[12px]'>Commisions</p>
                                                             <p className='text-black/[0.7] font-extrabold text-[16px]'>{utils.renderBalance(withdrawnCardData.potentialCommision, isBalanceHidden)}</p>
@@ -819,7 +821,7 @@ const Header = ({ darkMode, setDarkMode }) => {
                     <p className='text-[#23255c] text-[16px] leading-[25px] font-normal'>Welcome</p>
                     <p className='text-[#24245c] text-[20px] leading-[25px] font-normal'>Necmettin Murat TENIL</p>
                     <div className='flex items-center justify-center gap-[8px] border-t-[2px] w-fit mt-[8px] pt-[8px]'>
-                        <img src={SuperAdminIcon} alt="Super Admin Icon" />
+                        <Image src={SuperAdminIcon} alt="Super Admin Icon" />
                         <p className='text-[#5cbf54] font-bold text-[14px]'>Superadmin</p>
                     </div>
                 </div>
@@ -1126,4 +1128,4 @@ const Row3 = ({ selectedRow3Tab }) => {
     );
 };
 
-export default Home
+export default HomePage;

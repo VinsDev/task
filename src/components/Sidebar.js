@@ -1,26 +1,27 @@
 import React from 'react';
-import logo from '../assets/images/logo.png';
-import HomeIcon from '../assets/icons/home.svg';
-import UserIcon from '../assets/icons/user.svg';
-import UniversitiesIcon from '../assets/icons/universities.svg';
-import MarketPlaceIcon from '../assets/icons/marketplace.svg';
-import ProgramIcon from '../assets/icons/program.svg';
-import SearchIcon from '../assets/icons/search.svg';
-import ApplicationsIcon from '../assets/icons/applications.svg';
-import BranchIcon from '../assets/icons/branch.svg';
-import AgenciesIcon from '../assets/icons/agencies.svg';
-import SubAgenciesIcon from '../assets/icons/subagencies.svg';
-import CandidatesIcon from '../assets/icons/candidates.svg';
-import CommisionsIcon from '../assets/icons/commisions.svg';
-import TransactionIcon from '../assets/icons/transactions.svg';
-import TransactionItemsIcon from '../assets/icons/transaction-items.svg';
-import InvoicesIcon from '../assets/icons/invoices.svg';
-import EventIcon from '../assets/icons/commisions.svg';
-import ParticipantIcon from '../assets/icons/participants.svg';
-import VisitorFormIcon from '../assets/icons/visitors.svg';
-import SeasonIcon from '../assets/icons/commisions.svg';
-import AnnouncementIcon from '../assets/icons/commisions.svg';
-import ArticleIcon from '../assets/icons/commisions.svg';
+import Image from 'next/image';
+import logo from '../../public/images/logo.png';
+import HomeIcon from '../../public/icons/home.svg';
+import UserIcon from '../../public/icons/user.svg';
+import UniversitiesIcon from '../../public/icons/universities.svg';
+import MarketPlaceIcon from '../../public/icons/marketplace.svg';
+import ProgramIcon from '../../public/icons/program.svg';
+import SearchIcon from '../../public/icons/search.svg';
+import ApplicationsIcon from '../../public/icons/applications.svg';
+import BranchIcon from '../../public/icons/branch.svg';
+import AgenciesIcon from '../../public/icons/agencies.svg';
+import SubAgenciesIcon from '../../public/icons/subagencies.svg';
+import CandidatesIcon from '../../public/icons/candidates.svg';
+import CommisionsIcon from '../../public/icons/commisions.svg';
+import TransactionIcon from '../../public/icons/transactions.svg';
+import TransactionItemsIcon from '../../public/icons/transaction-items.svg';
+import InvoicesIcon from '../../public/icons/invoices.svg';
+import EventIcon from '../../public/icons/commisions.svg';
+import ParticipantIcon from '../../public/icons/participants.svg';
+import VisitorFormIcon from '../../public/icons/visitors.svg';
+import SeasonIcon from '../../public/icons/commisions.svg';
+import AnnouncementIcon from '../../public/icons/commisions.svg';
+import ArticleIcon from '../../public/icons/commisions.svg';
 import { FaChevronRight } from 'react-icons/fa';
 
 const Sidebar = ({ darkMode }) => {
@@ -29,40 +30,40 @@ const Sidebar = ({ darkMode }) => {
       {/* Logo */}
       <div className='pt-[30px] pb-[20px] items-center justify-center'>
         <div className='flex justify-center relative'>
-          <img src={logo} alt='' className='cursor-pointer' />
+          <Image src={logo} alt='' className='cursor-pointer' />
         </div>
         <div className='flex justify-center items-center'>
           <h2 className={`text-[#24245c]/[0.9] text-[16px] leading-[25px] font-normal tracking-widest ${darkMode ? 'text-white' : ''}`}>PANEL</h2>
         </div>
       </div>
-      <SidebarItem icon={<img src={HomeIcon} alt="Home Icon" />} text="Home" active={true} darkMode={darkMode} />
-      <SidebarItem icon={<img src={UserIcon} alt="User Icon" />} text="User" darkMode={darkMode} />
+      <SidebarItem icon={<Image src={HomeIcon} alt="Home Icon" />} text="Home" active={true} darkMode={darkMode} />
+      <SidebarItem icon={<Image src={UserIcon} alt="User Icon" />} text="User" darkMode={darkMode} />
       <SidebarItemTag text="UNIVERSITY" />
-      <SidebarItem icon={<img src={UniversitiesIcon} alt="Universities Icon" />} text="Universities" darkMode={darkMode} />
-      <SidebarItemWithArrow icon={<img src={MarketPlaceIcon} alt="Market Place Icon" />} text="Marketplace" darkMode={darkMode} />
-      <SidebarItemWithArrow icon={<img src={ProgramIcon} alt="Program Icon" />} text="Program" darkMode={darkMode} />
-      <SidebarItem icon={<img src={SearchIcon} alt="Search Icon" />} text="Search" darkMode={darkMode} />
+      <SidebarItem icon={<Image src={UniversitiesIcon} alt="Universities Icon" />} text="Universities" darkMode={darkMode} />
+      <SidebarItemWithArrow icon={<Image src={MarketPlaceIcon} alt="Market Place Icon" />} text="Marketplace" darkMode={darkMode} />
+      <SidebarItemWithArrow icon={<Image src={ProgramIcon} alt="Program Icon" />} text="Program" darkMode={darkMode} />
+      <SidebarItem icon={<Image src={SearchIcon} alt="Search Icon" />} text="Search" darkMode={darkMode} />
       <SidebarItemTag text="APPLICATION" />
-      <SidebarItem icon={<img src={ApplicationsIcon} alt="Applications Icon" />} text="Applications" darkMode={darkMode} />
+      <SidebarItem icon={<Image src={ApplicationsIcon} alt="Applications Icon" />} text="Applications" darkMode={darkMode} />
       <SidebarItemTag text="PARTNERS" />
-      <SidebarItem icon={<img src={BranchIcon} alt="Branch Icon" />} text="Branch" darkMode={darkMode} />
-      <SidebarItem icon={<img src={AgenciesIcon} alt="Agencies Icon" />} text="Agencies" darkMode={darkMode} />
-      <SidebarItem icon={<img src={SubAgenciesIcon} alt="Sub Agencies Icon" />} text="Sub Agencies" darkMode={darkMode} />
+      <SidebarItem icon={<Image src={BranchIcon} alt="Branch Icon" />} text="Branch" darkMode={darkMode} />
+      <SidebarItem icon={<Image src={AgenciesIcon} alt="Agencies Icon" />} text="Agencies" darkMode={darkMode} />
+      <SidebarItem icon={<Image src={SubAgenciesIcon} alt="Sub Agencies Icon" />} text="Sub Agencies" darkMode={darkMode} />
       <SidebarItemTag text="LEAD MANAGEMENT" />
-      <SidebarItem icon={<img src={CandidatesIcon} alt="Candidates Icon" />} text="Candidates" darkMode={darkMode} />
+      <SidebarItem icon={<Image src={CandidatesIcon} alt="Candidates Icon" />} text="Candidates" darkMode={darkMode} />
       <SidebarItemTag text="FINANCE" />
-      <SidebarItem icon={<img src={CommisionsIcon} alt="Commisions Icon" />} text="Commisions" darkMode={darkMode} />
-      <SidebarItem icon={<img src={TransactionIcon} alt="Transactions Icon" />} text="Transactions" darkMode={darkMode} />
-      <SidebarItem icon={<img src={TransactionItemsIcon} alt="Transaction Items Icon" />} text="Transaction Items" darkMode={darkMode} />
-      <SidebarItem icon={<img src={InvoicesIcon} alt="Invoice Icon" />} text="Invoices" darkMode={darkMode} />
+      <SidebarItem icon={<Image src={CommisionsIcon} alt="Commisions Icon" />} text="Commisions" darkMode={darkMode} />
+      <SidebarItem icon={<Image src={TransactionIcon} alt="Transactions Icon" />} text="Transactions" darkMode={darkMode} />
+      <SidebarItem icon={<Image src={TransactionItemsIcon} alt="Transaction Items Icon" />} text="Transaction Items" darkMode={darkMode} />
+      <SidebarItem icon={<Image src={InvoicesIcon} alt="Invoice Icon" />} text="Invoices" darkMode={darkMode} />
       <SidebarItemTag text="EVENT MANAGEMENT" />
-      <SidebarItem icon={<img src={EventIcon} alt="Event Icon" />} text="Event" darkMode={darkMode} />
-      <SidebarItem icon={<img src={ParticipantIcon} alt="Participant Icon" />} text="Participant" darkMode={darkMode} />
-      <SidebarItem icon={<img src={VisitorFormIcon} alt="Visitor Form Icon" />} text="Visitor Form" darkMode={darkMode} />
+      <SidebarItem icon={<Image src={EventIcon} alt="Event Icon" />} text="Event" darkMode={darkMode} />
+      <SidebarItem icon={<Image src={ParticipantIcon} alt="Participant Icon" />} text="Participant" darkMode={darkMode} />
+      <SidebarItem icon={<Image src={VisitorFormIcon} alt="Visitor Form Icon" />} text="Visitor Form" darkMode={darkMode} />
       <SidebarItemTag text="OTHERS" />
-      <SidebarItem icon={<img src={SeasonIcon} alt="Season Icon" />} text="Season" darkMode={darkMode} />
-      <SidebarItem icon={<img src={AnnouncementIcon} alt="Announcement Icon" />} text="Announcement" darkMode={darkMode} />
-      <SidebarItem icon={<img src={ArticleIcon} alt="Article Icon" />} text="Article" darkMode={darkMode} />
+      <SidebarItem icon={<Image src={SeasonIcon} alt="Season Icon" />} text="Season" darkMode={darkMode} />
+      <SidebarItem icon={<Image src={AnnouncementIcon} alt="Announcement Icon" />} text="Announcement" darkMode={darkMode} />
+      <SidebarItem icon={<Image src={ArticleIcon} alt="Article Icon" />} text="Article" darkMode={darkMode} />
     </div>
   );
 };
