@@ -11,7 +11,7 @@ module.exports = {
         primary: '#56bce4',
       },
       backgroundColor: {
-        'dark-gray': '#1a202c', // Adjust the color to your dark mode background color
+        'dark-gray': '#1a202c',
       },
       textColor: ['responsive', 'hover', 'focus', 'group-hover'],
     },

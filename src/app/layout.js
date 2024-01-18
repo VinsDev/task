@@ -15,8 +15,6 @@ export default function RootLayout({ children }) {
       <Head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
-
-        {/* Set the image as favicon */}
         <link rel="icon" href="/images/logo.png" />
       </Head>
       <body className={inter.className}>{children}</body>
